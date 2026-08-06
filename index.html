@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pause — scroll-solve prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#092663;
+    --blue:#1873EA;
+    --amber:#FBBC48;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0B3DAE;color:#fff;font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:auto}
+  /* Nav-anchor jump targets land clear of the fixed nav. */
+  #how-it-works,#puzzles{scroll-margin-top:96px}
+  body{overflow-x:clip}   /* clip, not hidden — hidden would break position:sticky in .page */
+
+  /* ONE page-long gradient — same stops as the app's BrandGradient */
+  .page{
+    position:relative;
+    background:linear-gradient(180deg,
+      #0B3DAE 0%,
+      #1873EA 10%,
+      #6BA8F5 34%,
+      #C8D8F5 55%,
+      #F0D8C0 76%,
+      #FBBC48 100%
+    );
+    min-height:800vh;
+  }
+  /* Grain overlay */
+  .page::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.15 0 0 0 0 0.4 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    background-size:240px 240px;
+    mix-blend-mode:overlay;opacity:.55;
+  }
+
+  /* Scribble */
+  /* height is set in JS so the line terminates exactly at the CTA button */
+  .scribble{
+    position:absolute;left:50%;top:0;transform:translateX(-50%);
+    width:min(1200px,92vw);pointer-events:none;z-index:2;
+  }
+  .scribble path{
+    stroke-linecap:round;fill:none;stroke-width:3.5;
+    stroke-dasharray:var(--len);
+    stroke-dashoffset:calc(var(--len) * (1 - var(--draw, 0)));
+    transition:stroke-dashoffset .05s linear;opacity:.75;
+  }
+  .scribble .top{stroke:var(--amber)}
+  .scribble .bot{stroke:var(--navy)}
+
+  /* NAV — outside .page so its position:fixed is anchored to the viewport */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 42px;color:#fff;
+    border-bottom:1px solid transparent;
+    transition:color .3s ease, background .35s ease, border-color .35s ease,
+               backdrop-filter .35s ease, -webkit-backdrop-filter .35s ease;
+  }
+  /* Frosted bar appears only once content starts passing underneath */
+  body.scrolled nav{
+    background:rgba(13,60,168,.55);
+    backdrop-filter:saturate(150%) blur(16px);
+    -webkit-backdrop-filter:saturate(150%) blur(16px);
+    border-bottom-color:rgba(255,255,255,.14);
+  }
+  body.scrolled.flipped nav{
+    background:rgba(255,255,255,.6);
+    border-bottom-color:rgba(9,38,99,.10);
+  }
+  .wordmark{font-family:'Young Serif',serif;font-size:26px}
+  .navlinks{display:flex;gap:36px;font-weight:300;font-size:14.5px;opacity:.82}
+  .navlinks a{color:inherit;text-decoration:none}
+  .navcta{
+    font-weight:500;font-size:14px;padding:11px 22px;border-radius:24px;
+    border:1px solid currentColor;opacity:.9;cursor:pointer;background:transparent;color:inherit;
+  }
+  body.flipped nav{color:var(--navy)}
+
+  /* ============ THE STORY ============ */
+  /* Sticky phone, chapters scroll past on the left. */
+  .story{
+    position:relative;z-index:10;
+    max-width:1440px;margin:0 auto;padding:120px 60px 40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  }
+  .chapters{display:flex;flex-direction:column}
+  .chapter{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-right:20px;opacity:.35;transition:opacity .6s ease;
+  }
+  .chapter.active{opacity:1}
+  .eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--amber);margin-bottom:22px;
+  }
+  h1, .chapter h2{
+    font-family:'Young Serif',serif;font-weight:400;color:#fff;
+  }
+  h1{
+    font-size:clamp(56px,7vw,96px);line-height:1.02;letter-spacing:-.5px;
+    margin-bottom:28px;
+  }
+  h1 .dot{color:var(--amber)}
+  .chapter h2{
+    font-size:clamp(40px,5.5vw,72px);line-height:1.03;letter-spacing:-.3px;
+    margin-bottom:22px;
+  }
+  .sub, .chapter p{
+    font-weight:300;font-size:19px;line-height:1.6;
+    color:rgba(255,255,255,.82);max-width:520px;margin-bottom:32px;
+  }
+  body.flipped .chapter h2{color:var(--navy)}
+  body.flipped .chapter p{color:rgba(9,38,99,.75)}
+  .cta-row{display:flex;align-items:center;gap:24px}
+  .appstore{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#fff;color:var(--navy);
+    font-weight:500;font-size:14.5px;
+    padding:16px 26px;border-radius:12px;text-decoration:none;
+    transition:transform .2s ease;
+  }
+  .appstore:hover{transform:translateY(-2px)}
+  body.flipped .appstore{background:var(--navy);color:#fff}
+
+  /* Sticky phone column */
+  .phone-col{position:relative}
+  .phone-sticky{
+    position:sticky;top:0;height:100vh;
+    /* clear the fixed nav so the phone never tucks under it */
+    padding-top:104px;padding-bottom:28px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  /* ---------- Device: iPhone 15 Pro-ish, titanium ---------- */
+  .phone{
+    position:relative;
+    height:min(740px, calc(100vh - 200px));
+    aspect-ratio:430/876;
+    border-radius:58px;
+    /* brushed-titanium rail */
+    background:linear-gradient(145deg,#8d8f94 0%,#5c5e63 18%,#3f4145 38%,#75777c 52%,#3a3c40 70%,#6e7075 88%,#4a4c50 100%);
+    padding:3px;
+    box-shadow:
+      0 50px 100px rgba(3,8,45,.55),
+      0 8px 24px rgba(3,8,45,.35),
+      inset 0 0 0 .5px rgba(255,255,255,.35);
+  }
+  /* inner black body between rail and glass */
+  .bezel{
+    position:absolute;inset:3px;border-radius:55px;
+    background:#0a0a0c;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  /* physical buttons */
+  .phone::before,.phone::after{
+    content:"";position:absolute;border-radius:2px;
+    background:linear-gradient(180deg,#75777c,#46484c);
+    box-shadow:inset 0 .5px 0 rgba(255,255,255,.4);
+  }
+  .phone::before{ left:-2.5px;top:21%;width:3px;height:5.5%; }   /* volume up   */
+  .phone::after { right:-2.5px;top:25%;width:3px;height:9%;  }   /* side button */
+
+  .screen{
+    position:absolute;inset:11px;border-radius:47px;overflow:hidden;
+    background:#000;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.9);
+    /* Everything inside the screen is sized in cqw so the whole UI scales
+       proportionally with the phone — like a real screenshot. The app's
+       real canvas is 393pt wide, so  Npt → (N / 393 * 100)cqw. */
+    container-type:size;
+  }
+  /* glass glare */
+  .screen::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:40;
+    background:linear-gradient(118deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.045) 18%,transparent 42%);
+  }
+  /* Dynamic Island */
+  .island{
+    position:absolute;top:3cqw;left:50%;transform:translateX(-50%);
+    width:29cqw;height:8.4cqw;
+    background:#000;border-radius:999px;z-index:35;
+  }
+  /* iOS status bar */
+  .statusbar{
+    position:absolute;top:0;left:0;right:0;height:13cqw;z-index:34;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:3.5cqw 7.6cqw 0;
+    font-family:-apple-system,'SF Pro Text','Poppins',sans-serif;
+    font-size:3.44cqw;font-weight:600;color:#fff;
+    pointer-events:none;
+  }
+  .statusbar.dark{color:#fff}
+  .sb-right{display:flex;align-items:center;gap:1.3cqw}
+  .sb-ico{height:2.8cqw;width:auto;fill:currentColor}
+  .sb-batt{
+    width:5.9cqw;height:2.9cqw;border-radius:.8cqw;
+    border:1px solid rgba(255,255,255,.5);padding:.4cqw;display:inline-block;position:relative;
+  }
+  .sb-batt::after{
+    content:"";position:absolute;right:-.8cqw;top:.9cqw;width:.4cqw;height:1cqw;
+    background:rgba(255,255,255,.5);border-radius:0 1px 1px 0;
+  }
+  .sb-batt i{display:block;height:100%;width:78%;background:#fff;border-radius:.4cqw}
+  /* Each scene stacks in the screen; opacity toggles */
+  .scene{
+    position:absolute;inset:0;
+    opacity:0;transition:opacity .5s ease;
+    display:flex;flex-direction:column;
+  }
+  .scene.on{opacity:1}
+
+  /* ================= SCENES — mirroring the real app UI =================
+     Sourced from the actual SwiftUI: ShieldConfigurationExtension.swift,
+     WordJumbleView.swift and PuzzleSharedUI.swift (PuzzleSuccessCard).      */
+
+  /* ---- Scene 0/4: the Pause shield (ShieldConfiguration) ----
+     Real config: bg #1873EA + ultraThinMaterial blur over the app,
+     title "Pause", subtitle, primary button "Solve Puzzle". */
+  .scene-shield{align-items:center;justify-content:center;background:#1873EA}
+  .shield-blur{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(120% 80% at 20% 12%, rgba(255,90,121,.55), transparent 60%),
+      radial-gradient(120% 80% at 85% 30%, rgba(123,92,255,.5), transparent 62%),
+      #1873EA;
+    filter:blur(34px);
+    opacity:.9;
+  }
+  .shield-body{position:relative;z-index:2;text-align:center;padding:0 7cqw;display:flex;flex-direction:column;align-items:center}
+  /* Instagram app icon — sized like a real home-screen icon (~15% of the
+     393pt canvas width) sitting above the paused-app title. */
+  .ig-icon{
+    width:16cqw;height:16cqw;border-radius:3.6cqw;
+    margin-bottom:4cqw;
+    box-shadow:0 3cqw 6cqw rgba(0,0,0,.22);
+  }
+  .shield-mark{
+    font-family:'Poppins',sans-serif;font-weight:600;font-size:6cqw;color:#fff;
+    line-height:1.15;margin-bottom:2.4cqw;
+  }
+  .shield-sub{
+    font-weight:400;font-size:3.56cqw;line-height:1.45;
+    color:rgba(255,255,255,.85);margin-bottom:7.6cqw;
+  }
+  .shield-btn{
+    display:inline-block;background:#fff;color:#1873EA;
+    font-weight:500;font-size:3.8cqw;
+    padding:3.3cqw 7.6cqw;border-radius:3.5cqw;
+    box-shadow:0 8px 22px rgba(0,0,0,.18);
+  }
+
+  /* ---- Scene 1: Word Jumble (the real puzzle) ----
+     Real values from WordJumbleView.swift at a 393pt canvas:
+     tile 56pt, letter Poppins 40pt, radius 4pt, 24pt h-padding.
+     Expressed in cqw so it scales with the phone.                       */
+  .scene-puzzle{
+    background:linear-gradient(180deg,#1873EA 0%,#6BA8F5 40%,#C8D8F5 65%,#F0D8C0 82%,#FBBC48 100%);
+    justify-content:flex-start;padding:14cqw 0 4cqw;
+  }
+  .pz-header{padding:4cqw 6cqw 3cqw;text-align:center}
+  .pz-round{
+    display:inline-block;font-weight:500;font-size:3.05cqw;
+    color:rgba(255,255,255,.9);background:rgba(255,255,255,.15);
+    padding:1cqw 3cqw;border-radius:999px;margin-bottom:1.5cqw;
+  }
+  .pz-title{
+    font-family:'Young Serif',serif;font-size:6.1cqw;color:#fff;margin-bottom:1.5cqw;
+    line-height:1.15;
+  }
+  .pz-sub{font-weight:400;font-size:3.56cqw;color:rgba(255,255,255,.85);line-height:1.35}
+  .pz-mid{flex:1;display:flex;align-items:center;justify-content:center}
+
+  .jt-slots,.jt-pool{
+    display:flex;justify-content:space-between;
+    padding:0 6.1cqw;width:100%;
+  }
+  .jt-slot,.jt-tile{
+    width:14.25cqw;height:14.25cqw;flex:0 0 auto;
+    border-radius:1cqw;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:400;font-size:10.2cqw;
+    line-height:1;color:#fff;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);
+    position:relative;
+  }
+  /* empty answer slot: no dark wash, letter hidden */
+  .jt-slot span{visibility:hidden;position:relative;z-index:2}
+  /* filled: black .4 wash + visible letter */
+  .jt-slot.filled::before{
+    content:"";position:absolute;inset:0;border-radius:1cqw;background:rgba(0,0,0,.4);
+  }
+  .jt-slot.filled span{visibility:visible}
+  .jt-slot.landing{animation:land .45s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes land{
+    0%{transform:translateY(-18px) scale(.6);opacity:0}
+    60%{transform:translateY(0) scale(1.12);opacity:1}
+    100%{transform:translateY(0) scale(1);opacity:1}
+  }
+  /* pool tile always has the dark wash */
+  .jt-tile::before{
+    content:"";position:absolute;inset:0;border-radius:1cqw;background:rgba(0,0,0,.4);
+  }
+  .jt-tile{z-index:1;isolation:isolate}
+  /* consumed pool tile becomes the dim placeholder (JumbleEmptyTile) */
+  .jt-tile.used{
+    color:transparent;background:rgba(255,255,255,.03);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+  }
+  .jt-tile.used::before{display:none}
+
+  /* ---- Scene 2: PuzzleSuccessCard ---- */
+  .scene-success{
+    align-items:center;justify-content:center;padding:0 8cqw;
+    background:linear-gradient(180deg,#1873EA 0%,#6BA8F5 40%,#C8D8F5 65%,#F0D8C0 82%,#FBBC48 100%);
+  }
+  .scene-success::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+  .sc-card{
+    position:relative;z-index:2;width:100%;text-align:center;
+    padding:11cqw 7cqw 9cqw;border-radius:8cqw;
+    background:linear-gradient(180deg,rgba(165,203,255,.7),rgba(255,224,166,.7)),rgba(255,255,255,.4);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    box-shadow:
+      inset 0 2px 4px rgba(0,146,255,.4),
+      inset 0 -4px 4px rgba(252,155,0,.24),
+      0 10px 24px rgba(0,0,0,.12);
+    transform:scale(.92);opacity:0;
+    transition:transform .45s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease;
+  }
+  .scene-success.on .sc-card{transform:scale(1);opacity:1}
+  .sc-check{width:10.2cqw;height:10.2cqw;margin:0 auto 6cqw;display:block}
+  .sc-title{font-family:'Young Serif',serif;font-size:8.1cqw;color:#0264C1;margin-bottom:4cqw;line-height:1.1}
+  .sc-sub{font-weight:400;font-size:4.07cqw;line-height:1.4;color:rgba(0,0,0,.85)}
+
+  /* ---- Scene 3: Instagram ---- */
+  .scene-feed{background:#000;color:#fff}
+  .feed-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14cqw 3.6cqw 2.5cqw;border-bottom:1px solid rgba(255,255,255,.08);
+    background:#000;position:relative;z-index:3;
+  }
+  .feed-app{font-family:'Young Serif',serif;font-size:5.6cqw;color:#fff}
+  .feed-icons{display:flex;gap:3.6cqw}
+  .feed-icons svg{width:5.1cqw;height:5.1cqw;stroke:#fff;fill:none;stroke-width:2}
+  /* the strip that translates as you scroll */
+  .feed-scroll{will-change:transform}
+  .stories-row{
+    display:flex;gap:3.6cqw;padding:3.6cqw;overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .story-avatar{flex:0 0 auto;width:14.2cqw;text-align:center;font-size:2.5cqw;color:#ccc;font-weight:300}
+  .story-ring{
+    width:13.2cqw;height:13.2cqw;border-radius:50%;
+    background:conic-gradient(from 45deg,#E1306C,#F77737,#FCAF45,#E1306C);
+    padding:.5cqw;margin:0 auto 1cqw;
+  }
+  .story-ring div{
+    width:100%;height:100%;border-radius:50%;background:#000;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:600;font-size:3.56cqw;font-family:'Poppins';
+  }
+  .post{padding:3cqw 3.6cqw 2.5cqw}
+  .post-head{display:flex;align-items:center;gap:2.5cqw;margin-bottom:3cqw}
+  .post-avatar{width:8.1cqw;height:8.1cqw;border-radius:50%}
+  .av1{background:linear-gradient(135deg,#FCAF45,#E1306C)}
+  .av2{background:linear-gradient(135deg,#7B5CFF,#00C6FF)}
+  .av3{background:linear-gradient(135deg,#37D67A,#FBBC48)}
+  .post-user{font-size:3.05cqw;font-weight:600;color:#fff}
+  .post-img{width:100%;aspect-ratio:4/5;border-radius:2cqw}
+  .img1{background:linear-gradient(135deg,#7B5CFF 0%,#FF5A79 45%,#FBBC48 100%)}
+  .img2{background:linear-gradient(150deg,#0F2027 0%,#2C5364 40%,#00C6FF 100%)}
+  .img3{background:linear-gradient(160deg,#F7971E 0%,#FFD200 45%,#37D67A 100%)}
+  .post-actions{display:flex;gap:3.6cqw;padding:2.5cqw 0}
+  .post-actions svg{width:5.6cqw;height:5.6cqw;stroke:#fff;fill:none;stroke-width:2}
+  .post-caption{font-size:3.05cqw;color:#eee;font-weight:300;line-height:1.4}
+  .post-caption b{font-weight:600;color:#fff;margin-right:1.5cqw}
+
+  /* Follow-on stub sections */
+  .beat{
+    position:relative;z-index:10;min-height:80vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:80px 60px;
+  }
+  .beat-inner{max-width:820px;text-align:center}
+  .beat h2{
+    font-family:'Young Serif',serif;font-weight:400;
+    font-size:clamp(40px,5vw,72px);line-height:1.05;letter-spacing:-.3px;
+    color:#fff;margin-bottom:24px;
+  }
+  .beat p{
+    font-weight:300;font-size:19px;line-height:1.55;
+    color:rgba(255,255,255,.78);max-width:600px;margin:0 auto;
+  }
+  body.flipped .beat h2{color:var(--navy)}
+  body.flipped .beat p{color:rgba(9,38,99,.72)}
+  .big-number{
+    font-family:'Young Serif',serif;font-size:clamp(120px,20vw,260px);line-height:.9;
+    color:var(--navy);display:block;margin-bottom:12px;
+  }
+
+  /* ---- Puzzle gallery grid ---- */
+  .puzzles-beat{flex-direction:column;padding:80px 40px 100px}
+  .puzzles-beat .beat-inner{margin-bottom:56px}
+  .puzzle-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    max-width:1080px;width:100%;margin:0 auto;
+  }
+  .puzzle-tile{
+    position:relative;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    transition:transform .25s ease;
+  }
+  .puzzle-tile:hover{transform:translateY(-4px)}
+  .puzzle-tile img{
+    width:100%;aspect-ratio:1/1;object-fit:cover;
+    display:block;border-radius:24px;
+  }
+  .puzzle-tile figcaption{
+    font-weight:500;font-size:14px;color:var(--navy);text-align:center;
+  }
+  @media (max-width:820px){
+    .puzzles-beat{padding:60px 20px 80px}
+    .puzzle-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+    .puzzle-tile img{border-radius:20px}
+    .puzzle-tile figcaption{font-size:12.5px}
+  }
+  @media (max-width:420px){
+    .puzzle-grid{grid-template-columns:1fr}
+  }
+
+  /* ---- Testimonials ---- */
+  .testimonials{
+    position:relative;z-index:10;
+    max-width:1180px;margin:0 auto;padding:40px 60px 120px;
+  }
+  .testi-head{text-align:center;margin-bottom:56px}
+  .testi-eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:rgba(9,38,99,.55);margin-bottom:18px;
+  }
+  .testi-head h2{
+    font-family:'Young Serif',serif;font-weight:400;
+    font-size:clamp(38px,5vw,68px);line-height:1.04;color:var(--navy);
+  }
+  .testi-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+  }
+  .testi-card{
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:24px;padding:30px 28px;
+    box-shadow:0 12px 34px rgba(9,38,99,.08);
+    display:flex;flex-direction:column;
+  }
+  .stars{color:var(--amber);font-size:15px;letter-spacing:2px;margin-bottom:14px}
+  .testi-card blockquote{
+    font-weight:300;font-size:17px;line-height:1.55;
+    color:var(--navy);margin-bottom:18px;flex:1;
+  }
+  .testi-card figcaption{
+    font-size:13px;font-weight:500;color:rgba(9,38,99,.55);
+  }
+  .testi-card figcaption::before{content:"— "}
+  @media (max-width:820px){
+    .testi-grid{grid-template-columns:1fr}
+    .testimonials{padding:20px 24px 80px}
+  }
+
+  .end{
+    position:relative;z-index:10;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:80px 60px;text-align:center;
+  }
+  .end h2{
+    font-family:'Young Serif',serif;font-weight:400;
+    font-size:clamp(48px,7vw,96px);color:var(--navy);
+    margin-bottom:36px;line-height:1;
+  }
+  .end .appstore{background:var(--navy);color:#fff;padding:22px 42px;font-size:16px}
+  .end-under{display:block;width:220px;height:6px;margin-top:18px;background:var(--navy);border-radius:3px;opacity:.9}
+
+  /* FAQ block — sits on the warm/amber part of the page gradient
+     so we style everything for the flipped/navy ink state. */
+  .faq-block{
+    position:relative;z-index:10;
+    max-width:820px;margin:0 auto;padding:40px 24px 100px;
+  }
+  .faq-head{text-align:center;margin-bottom:48px}
+  .faq-eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:rgba(9,38,99,.55);margin-bottom:14px;
+  }
+  .faq-head h2{
+    font-family:'Young Serif',serif;font-weight:400;
+    font-size:clamp(38px,5vw,64px);line-height:1.05;color:var(--navy);
+  }
+  .faq-list{border-top:1px solid rgba(9,38,99,.14)}
+  .faq-item{
+    border-bottom:1px solid rgba(9,38,99,.14);
+    padding:26px 4px;
+  }
+  .faq-item h3{
+    font-weight:600;font-size:17px;color:var(--navy);margin-bottom:8px;line-height:1.35;
+  }
+  .faq-item p{
+    font-weight:300;font-size:15.5px;line-height:1.6;
+    color:rgba(9,38,99,.72);max-width:none;margin:0;
+  }
+  @media (max-width:820px){
+    .faq-block{padding:20px 20px 70px}
+    .faq-head{margin-bottom:32px}
+    .faq-item{padding:22px 4px}
+  }
+
+  /* Footer — sits on the amber band at the bottom of the page-long
+     gradient, so ink is already navy here (matches .flipped state). */
+  .site-footer{position:relative;z-index:10;padding:0 60px 56px}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding-top:36px;
+    border-top:1px solid rgba(9,38,99,.14);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;
+  }
+  .footer-mark{font-family:'Young Serif',serif;font-size:20px;color:var(--navy)}
+  .footer-links{display:flex;gap:26px;flex-wrap:wrap}
+  .footer-links a{
+    color:rgba(9,38,99,.72);text-decoration:none;font-weight:400;font-size:14px;
+    transition:color .15s ease;
+  }
+  .footer-links a:hover{color:var(--navy)}
+  .footer-copy{color:rgba(9,38,99,.5);font-weight:300;font-size:13px}
+  @media (max-width:820px){
+    .site-footer{padding:0 20px 40px}
+    .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  }
+
+  /* ---------------- MOBILE ---------------- */
+  /* On mobile the phone lives ABOVE the chapters (via `order`), stays
+     sticky near the top, and copy scrolls up from underneath it. Same
+     scene transitions on scroll — just re-composed vertically. */
+  @media (max-width:900px){
+    nav{
+      padding:14px 20px;
+      /* Phone sits directly under the nav on mobile, so keep the frost
+         always on for readability instead of waiting on body.scrolled. */
+      background:rgba(13,60,168,.55);
+      backdrop-filter:saturate(150%) blur(16px);
+      -webkit-backdrop-filter:saturate(150%) blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    body.flipped nav{
+      background:rgba(255,255,255,.6);
+      border-bottom-color:rgba(9,38,99,.10);
+    }
+    .navlinks{display:none}
+    .navcta{padding:9px 18px;font-size:13px}
+    .wordmark{font-size:22px}
+
+    /* MOBILE ORDER: hero copy → phone plays the whole story → the
+       remaining points reinforce it. `display:contents` on .chapters
+       lifts the individual chapters into .story's flex flow so we can
+       interleave the phone stage between chapter 0 and chapter 1. */
+    .story{
+      display:flex;flex-direction:column;
+      grid-template-columns:none;gap:0;
+      padding:0 20px 24px;
+    }
+    .chapters{display:contents}
+    .chapter[data-ch="0"]{order:1}
+    .phone-col{order:2}
+    .chapter[data-ch="1"]{order:3}
+    .chapter[data-ch="2"]{order:4}
+    .chapter[data-ch="3"]{order:5}
+
+    /* The phone STAGE — a tall block the phone sticks within. Its height
+       is the scroll budget for the full 4-scene animation; when it ends
+       the phone releases and the reinforcing points take over. */
+    .phone-col{
+      position:relative;z-index:11;
+      height:340vh;
+      margin-bottom:8vh;
+    }
+    .phone-sticky{
+      position:sticky;top:64px;
+      height:calc(100vh - 140px);   /* keeps the phone off the screen edges */
+      padding:0;justify-content:center;
+    }
+    /* Real IG posts are 4:5 portrait — fills the taller mobile screen
+       instead of leaving dead black space below the square. */
+    .post-img{aspect-ratio:4/5}
+    .phone{
+      height:100%;width:auto;
+      border-radius:38px;
+      box-shadow:0 24px 60px rgba(3,8,45,.45),0 0 0 1.5px rgba(255,255,255,.16);
+    }
+    .screen{inset:8px;border-radius:32px}
+
+    /* Phone UI needs no mobile overrides — everything inside .screen is
+       in cqw, so it scales with the device automatically. Only the outer
+       shell radii change for the smaller frame. */
+    .phone{border-radius:46px}
+    .bezel{border-radius:43px}
+    .screen{inset:9px;border-radius:38px}
+
+
+    /* On mobile nothing is dimmed — the phone stage carries the story,
+       and these are sequential blocks, not competing columns. */
+    .chapter{
+      opacity:1;
+      min-height:0;
+      padding:0 0 8vh;
+      justify-content:center;
+      text-align:left;
+    }
+    /* Chapter 0 = the hero. Owns the first screen on its own. */
+    .chapter[data-ch="0"]{
+      min-height:100vh;
+      padding:88px 0 32px;
+      justify-content:center;
+    }
+    /* Reinforcing points after the animation */
+    .chapter[data-ch="1"],
+    .chapter[data-ch="2"],
+    .chapter[data-ch="3"]{
+      min-height:0;
+      padding:6vh 0;
+    }
+    .eyebrow{font-size:11px;letter-spacing:2px;margin-bottom:14px}
+    h1{font-size:44px;margin-bottom:18px;line-height:1.05}
+    .chapter h2{font-size:34px;margin-bottom:14px;line-height:1.05}
+    .sub, .chapter p{font-size:16px;line-height:1.55;margin-bottom:22px;max-width:none}
+    .cta-row{flex-wrap:wrap}
+    .appstore{padding:14px 22px;font-size:14px}
+
+    /* Follow-on beats */
+    .beat{padding:60px 20px;min-height:auto}
+    .beat h2{font-size:34px}
+    .beat p{font-size:16px}
+    .big-number{font-size:140px}
+
+    /* Testimonials already handled below at 820px */
+    .end{padding:80px 20px}
+    .end h2{font-size:44px;margin-bottom:24px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wordmark">Pause</div>
+  <div class="navlinks">
+    <a href="#how-it-works">How it works</a>
+    <a href="#puzzles">Puzzles</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Download</a>
+</nav>
+
+<div class="page" id="page">
+
+  <svg class="scribble" viewBox="0 0 800 5600" preserveAspectRatio="none" aria-hidden="true">
+    <path class="top" id="scribbleTop"
+      d="M 400 40
+         C 620 260, 200 520, 380 780
+         C 560 1040, 240 1300, 420 1560
+         C 600 1820, 300 2080, 400 2280"/>
+    <path class="bot" id="scribbleBot"
+      d="M 400 2280
+         C 500 2480, 620 2740, 380 3000
+         C 200 3220, 500 3480, 400 3760
+         C 320 4020, 560 4260, 400 4520
+         C 260 4740, 420 4980, 400 5540"/>
+  </svg>
+
+  <!-- ================= THE STORY ================= -->
+  <section class="story" id="how-it-works">
+
+    <div class="chapters" id="chapters">
+
+      <!-- Chapter 1 -->
+      <article class="chapter" data-ch="0">
+        <div class="eyebrow">iPhone · Screen Time</div>
+        <h1>Scroll on<br>purpose<span class="dot">.</span></h1>
+        <p class="sub">You reach for your phone 96 times a day, and mostly on autopilot. Pause sits between you and your most distracting apps with a simple puzzle.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="appstore">Reclaim Your Time</a>
+        </div>
+      </article>
+
+      <!-- Chapter 2 -->
+      <article class="chapter" data-ch="1">
+        <h2>Solve it.</h2>
+        <p>A quick word puzzle. Not willpower — just a moment of intention. Solve and the app unlocks for fifteen minutes.</p>
+      </article>
+
+      <!-- Chapter 3 -->
+      <article class="chapter" data-ch="2">
+        <h2>Fifteen minutes<br>on purpose.</h2>
+        <p>You chose to open it, so use it the way you meant to. When the fifteen minutes are up, the pause comes back on its own.</p>
+      </article>
+
+      <!-- Chapter 4 -->
+      <article class="chapter" data-ch="3">
+        <h2>The pause<br>comes back.</h2>
+        <p>You may solve another puzzle if you wish, but the app is there to remind you that there are other things to enjoy outside of the scroll.</p>
+      </article>
+
+    </div><!-- /chapters -->
+
+    <div class="phone-col">
+      <div class="phone-sticky">
+        <div class="phone">
+          <div class="bezel"></div>
+          <div class="screen">
+
+            <!-- iOS status bar -->
+            <div class="statusbar">
+              <span class="sb-time">9:41</span>
+              <span class="sb-right">
+                <svg viewBox="0 0 18 12" class="sb-ico"><path d="M1 9h2v3H1zM5 6.5h2V12H5zM9 4h2v8H9zM13 1.5h2V12h-2z"/></svg>
+                <svg viewBox="0 0 16 12" class="sb-ico"><path d="M8 10.5l2-2a2.8 2.8 0 00-4 0l2 2zM8 6.2a5.6 5.6 0 013.9 1.6l1.4-1.4a7.6 7.6 0 00-10.6 0l1.4 1.4A5.6 5.6 0 018 6.2zM8 2.2a9.5 9.5 0 016.7 2.8L16 3.6a11.5 11.5 0 00-16 0l1.3 1.4A9.5 9.5 0 018 2.2z"/></svg>
+                <span class="sb-batt"><i></i></span>
+              </span>
+            </div>
+            <div class="island"></div>
+
+            <!-- Scene 0 — the real Pause shield (ShieldConfiguration) -->
+            <div class="scene scene-shield on" data-scene="0">
+              <div class="shield-blur"></div>
+              <div class="shield-body">
+                <svg class="ig-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <radialGradient id="ig-warm" cx="28%" cy="108%" r="140%">
+                      <stop offset="0%" stop-color="#FFDD55"/>
+                      <stop offset="10%" stop-color="#FFDD55"/>
+                      <stop offset="50%" stop-color="#FF543E"/>
+                      <stop offset="100%" stop-color="#C837AB"/>
+                    </radialGradient>
+                    <linearGradient id="ig-cool" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#3771C8"/>
+                      <stop offset="13%" stop-color="#3771C8"/>
+                      <stop offset="100%" stop-color="#6600FF" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="64" height="64" rx="16" fill="url(#ig-warm)"/>
+                  <rect width="64" height="64" rx="16" fill="url(#ig-cool)"/>
+                  <rect x="16" y="16" width="32" height="32" rx="9" fill="none" stroke="#fff" stroke-width="3.6"/>
+                  <circle cx="32" cy="32" r="8" fill="none" stroke="#fff" stroke-width="3.6"/>
+                  <circle cx="42.6" cy="21.4" r="2.7" fill="#fff"/>
+                </svg>
+                <div class="shield-mark">Instagram is paused</div>
+                <div class="shield-sub">Solve the puzzle to continue</div>
+                <div class="shield-btn">Solve Puzzle</div>
+              </div>
+            </div>
+
+            <!-- Scene 1 — the real Word Jumble puzzle -->
+            <div class="scene scene-puzzle" data-scene="1">
+              <div class="pz-header">
+                <div class="pz-round">Round 1 of 3</div>
+                <div class="pz-title">Unscramble the Words</div>
+                <div class="pz-sub">Drag or tap the letters into the boxes.</div>
+              </div>
+              <div class="pz-mid">
+                <div class="jt-slots" id="slots">
+                  <div class="jt-slot" data-i="0"><span>P</span></div>
+                  <div class="jt-slot" data-i="1"><span>A</span></div>
+                  <div class="jt-slot" data-i="2"><span>U</span></div>
+                  <div class="jt-slot" data-i="3"><span>S</span></div>
+                  <div class="jt-slot" data-i="4"><span>E</span></div>
+                </div>
+              </div>
+              <div class="jt-pool" id="pool">
+                <div class="jt-tile" data-i="3">S</div>
+                <div class="jt-tile" data-i="0">P</div>
+                <div class="jt-tile" data-i="4">E</div>
+                <div class="jt-tile" data-i="2">U</div>
+                <div class="jt-tile" data-i="1">A</div>
+              </div>
+            </div>
+
+            <!-- Scene 2 — the real PuzzleSuccessCard -->
+            <div class="scene scene-success" data-scene="2">
+              <div class="sc-card">
+                <svg class="sc-check" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9.2" stroke="#0264C1" stroke-width="1.9"/>
+                  <path d="M7.8 12.2l2.9 2.9 5.6-5.6" stroke="#0264C1" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="sc-title">Puzzle solved!</div>
+                <div class="sc-sub">App unlocked for 15 minutes, happy mindful scrolling</div>
+              </div>
+            </div>
+
+            <!-- Scene 3 — Instagram, scrolls through several posts -->
+            <div class="scene scene-feed" data-scene="3">
+              <div class="feed-top">
+                <div class="feed-app">Instagram</div>
+                <div class="feed-icons">
+                  <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.5 7.2L4 21l1.9-5.5A8 8 0 1121 12z"/></svg>
+                </div>
+              </div>
+              <div class="feed-scroll" id="feedScroll">
+                <div class="stories-row">
+                  <div class="story-avatar"><div class="story-ring"><div>k</div></div>kai</div>
+                  <div class="story-avatar"><div class="story-ring"><div>j</div></div>jen</div>
+                  <div class="story-avatar"><div class="story-ring"><div>a</div></div>ali</div>
+                  <div class="story-avatar"><div class="story-ring"><div>r</div></div>rey</div>
+                  <div class="story-avatar"><div class="story-ring"><div>s</div></div>sam</div>
+                </div>
+
+                <div class="post">
+                  <div class="post-head"><div class="post-avatar av1"></div><div class="post-user">kai.morning</div></div>
+                  <div class="post-img img1"></div>
+                  <div class="post-actions">
+                    <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.5 7.2L4 21l1.9-5.5A8 8 0 1121 12z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M4 4l16 8-16 8V4z"/></svg>
+                  </div>
+                  <div class="post-caption"><b>kai.morning</b>slow start · coffee · window light</div>
+                </div>
+
+                <div class="post">
+                  <div class="post-head"><div class="post-avatar av2"></div><div class="post-user">ali.builds</div></div>
+                  <div class="post-img img2"></div>
+                  <div class="post-actions">
+                    <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.5 7.2L4 21l1.9-5.5A8 8 0 1121 12z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M4 4l16 8-16 8V4z"/></svg>
+                  </div>
+                  <div class="post-caption"><b>ali.builds</b>shipped the thing 🚢</div>
+                </div>
+
+                <div class="post">
+                  <div class="post-head"><div class="post-avatar av3"></div><div class="post-user">rey.walks</div></div>
+                  <div class="post-img img3"></div>
+                  <div class="post-actions">
+                    <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.5 7.2L4 21l1.9-5.5A8 8 0 1121 12z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M4 4l16 8-16 8V4z"/></svg>
+                  </div>
+                  <div class="post-caption"><b>rey.walks</b>golden hour, no headphones</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 4 — the shield returns after the 15 minutes are up -->
+            <div class="scene scene-shield scene-shield-back" data-scene="4">
+              <div class="shield-blur"></div>
+              <div class="shield-body">
+                <svg class="ig-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="64" height="64" rx="16" fill="url(#ig-warm)"/>
+                  <rect width="64" height="64" rx="16" fill="url(#ig-cool)"/>
+                  <rect x="16" y="16" width="32" height="32" rx="9" fill="none" stroke="#fff" stroke-width="3.6"/>
+                  <circle cx="32" cy="32" r="8" fill="none" stroke="#fff" stroke-width="3.6"/>
+                  <circle cx="42.6" cy="21.4" r="2.7" fill="#fff"/>
+                </svg>
+                <div class="shield-mark">Instagram is paused</div>
+                <div class="shield-sub">15 minutes are up</div>
+                <div class="shield-btn">Solve Puzzle</div>
+              </div>
+            </div>
+
+          </div><!-- /screen -->
+        </div><!-- /phone -->
+      </div><!-- /phone-sticky -->
+    </div><!-- /phone-col -->
+
+  </section>
+
+  <!-- After the story, the puzzle gallery -->
+  <section class="beat puzzles-beat" id="puzzles">
+    <div class="beat-inner">
+      <h2>Nine calming puzzles.</h2>
+      <p>A different kind of calm for every reach.</p>
+    </div>
+    <div class="puzzle-grid">
+      <figure class="puzzle-tile"><img src="assets/puzzles/word-jumble.png"      alt="Word Jumble">      <figcaption>Word Jumble</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/word-search.png"      alt="Word Search">      <figcaption>Word Search</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/matching-cards.png"   alt="Five Letters">     <figcaption>Five Letters</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/connect-the-dots.png" alt="Connect the Dots"> <figcaption>Connect the Dots</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/color-fill.png"       alt="Connect the Colors"><figcaption>Connect the Colors</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/maze.png"             alt="Maze">             <figcaption>Maze</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/ball-sort.png"        alt="Ball Sort">        <figcaption>Ball Sort</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/sliding-tile.png"     alt="Sliding Tile">     <figcaption>Sliding Tile</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/sixdoku.png"          alt="Sixdoku">          <figcaption>Sixdoku</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="beat-inner">
+      <h2>Watch your<br>screen time drop.</h2>
+      <p>See how many times you walked away, how much you reclaimed, and your streak.</p>
+    </div>
+  </section>
+
+  <!-- Real App Store reviews -->
+  <section class="testimonials">
+    <div class="testi-head">
+      <div class="testi-eyebrow">From the App Store</div>
+      <h2>People are<br>scrolling less.</h2>
+    </div>
+    <div class="testi-grid">
+
+      <figure class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>My screen time has significantly reduced — but most importantly, the urge to scroll and open social media apps has significantly reduced.</blockquote>
+        <figcaption>Tito9126</figcaption>
+      </figure>
+
+      <figure class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>I often found myself mindlessly scrolling on social media for hours. Pause has been the perfect barrier my brain needed to break that habit.</blockquote>
+        <figcaption>Aumar31</figcaption>
+      </figure>
+
+      <figure class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>That tiny bit of friction is enough to make you stop and ask "do I actually want to scroll right now?" Half the time I just close my phone.</blockquote>
+        <figcaption>alexxxo</figcaption>
+      </figure>
+
+      <figure class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>I miss the puzzles, the cognitive stimulation, and the barriers it places between my fingers' impulses and the doomscrolling apps. 10/10 recommend.</blockquote>
+        <figcaption>doomscroller in recovery</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- Common questions — same content as /support so answers are on the landing page too -->
+  <section class="faq-block">
+    <div class="faq-head">
+      <h2>Frequently Asked<br>Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Is Pause free?</h3>
+        <p>Yes — Pause offers a free, ad-supported version. You also get a 7-day free trial of the premium version, which unlocks all nine puzzles and removes ads.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does Pause work on Android?</h3>
+        <p>Not yet. Pause is built on Apple's Screen Time technology, so it's iPhone-only for now.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How is this different from iOS Screen Time?</h3>
+        <p>Screen Time blocks an app outright behind a settings menu. Pause adds a small puzzle in the moment instead — so opening a paused app becomes a choice, not a reflex.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I delete Pause and get my apps back instantly?</h3>
+        <p>Yes. Removing Pause removes every restriction immediately — nothing about your apps is permanently changed.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which apps can I pause?</h3>
+        <p>Any app, category, or website — you choose during setup, and you can change your list anytime from Settings.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my data private?</h3>
+        <p>Yes. Pause uses Apple's Screen Time framework, and the apps you choose never leave your device.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <h2>Try Pause.</h2>
+    <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="appstore">Download on the App Store</a>
+    <span class="end-under"></span>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-mark">Pause</div>
+      <div class="footer-links">
+        <a href="roadmap.html">Roadmap</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy/">Privacy</a>
+      </div>
+      <div class="footer-copy">© 2026 Pause. Made for scrolling on purpose.</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const scenes   = [...document.querySelectorAll('.scene')];
+  const slots     = [...document.querySelectorAll('.jt-slot')];
+  const poolTiles = [...document.querySelectorAll('.jt-tile')];
+  const feedScroll= document.getElementById('feedScroll');
+  const scribbleTop = document.getElementById('scribbleTop');
+  const scribbleBot = document.getElementById('scribbleBot');
+  const scribbleSvg = document.querySelector('.scribble');
+  const story    = document.getElementById('how-it-works');
+  const endBtn   = document.querySelector('.end .appstore');
+  const page     = document.getElementById('page');
+  const phoneCol    = document.querySelector('.phone-col');
+  const phoneSticky = document.querySelector('.phone-sticky');
+  const mobileMQ    = window.matchMedia('(max-width:900px)');
+  const isMobile    = () => mobileMQ.matches;
+
+  // The scribble spans from the top of the page down to the CTA button — and
+  // stops there. Nothing is drawn past it.
+  let scribbleEndY = 0;
+  function layoutScribble(){
+    const pageTop = page.getBoundingClientRect().top + window.scrollY;
+    const btnTop  = endBtn.getBoundingClientRect().top + window.scrollY;
+    scribbleEndY  = btnTop;
+    scribbleSvg.style.height = Math.max(0, btnTop - pageTop) + 'px';
+  }
+
+  [scribbleTop, scribbleBot].forEach(p => {
+    const len = p.getTotalLength();
+    p.style.setProperty('--len', len);
+    p.style.setProperty('--draw', 0);
+  });
+
+  const solveOrder = [0, 1, 2, 3, 4];
+  const landed = new Set();
+
+  function setActive(list, i){
+    list.forEach((el, idx) => el.classList.toggle('on', idx === i));
+  }
+  function setActiveChapter(i){
+    chapters.forEach((el, idx) => el.classList.toggle('active', idx === i));
+  }
+
+  function tick(){
+    const vh = window.innerHeight;
+    const scrollY = window.scrollY;
+    const docH = document.documentElement.scrollHeight - vh;
+    const pct = Math.max(0, Math.min(1, scrollY / docH));
+
+    // --- Progress that drives the phone's scenes ---
+    // Desktop: progress through the whole story (phone beside the copy).
+    // Mobile:  progress through the phone STAGE only (.phone-col), because
+    //          the hero comes before it and the reinforcing points after.
+    let storyProgress;
+    if (isMobile()){
+      const stickyH  = phoneSticky.offsetHeight;
+      const stageTop = phoneCol.getBoundingClientRect().top + scrollY;
+      const start    = stageTop - 64;                              // sticky top offset
+      const travel   = Math.max(1, phoneCol.offsetHeight - stickyH);
+      storyProgress  = Math.max(0, Math.min(1, (scrollY - start) / travel));
+    } else {
+      const storyRect = story.getBoundingClientRect();
+      const storyH    = story.offsetHeight;
+      const storyTop  = storyRect.top + scrollY;
+      storyProgress   = Math.max(0, Math.min(1, (scrollY - storyTop) / (storyH - vh)));
+    }
+
+    // 4 scenes — each spans a quarter of that progress
+    const chapterFloat = storyProgress * chapters.length;
+    const chapterIdx = Math.min(chapters.length - 1, Math.floor(chapterFloat));
+    // Chapter dimming is a desktop-only affordance (two-column layout).
+    if (!isMobile()) setActiveChapter(chapterIdx);
+
+    // --- Scene mapping (fraction-based, independent of chapter count) ---
+    //   0.00–0.14  shield        "Solve the puzzle to continue"
+    //   0.14–0.50  Word Jumble   tiles land 0.18 → 0.46
+    //   0.50–0.60  success card  "Puzzle solved!"
+    //   0.60–0.88  Instagram     feed scrolls through 3 posts
+    //   0.88–1.00  shield again  now showing the walk-away stat
+    const P = storyProgress;
+    let sceneIdx;
+    if      (P < 0.14) sceneIdx = 0;
+    else if (P < 0.50) sceneIdx = 1;
+    else if (P < 0.60) sceneIdx = 2;
+    else if (P < 0.88) sceneIdx = 3;
+    else               sceneIdx = 4;
+    setActive(scenes, sceneIdx);
+
+    // --- Word Jumble: land one tile at a time across 0.18 → 0.46 ---
+    const solveFrom = 0.18, solveTo = 0.46;
+    const solveP = Math.max(0, Math.min(1, (P - solveFrom) / (solveTo - solveFrom)));
+    const tilesToLand = P >= solveTo ? 5 : Math.floor(solveP * 5);
+    for (let n = 0; n < solveOrder.length; n++){
+      const idx  = solveOrder[n];
+      const slot = slots[idx];
+      const tile = poolTiles.find(t => +t.dataset.i === idx);
+      if (!slot || !tile) continue;
+      if (n < tilesToLand && !landed.has(idx)){
+        slot.classList.add('filled','landing');
+        tile.classList.add('used');
+        landed.add(idx);
+        setTimeout(()=>slot.classList.remove('landing'), 450);
+      } else if (n >= tilesToLand && landed.has(idx)){
+        slot.classList.remove('filled');
+        tile.classList.remove('used');
+        landed.delete(idx);
+      }
+    }
+
+    // --- Instagram: translate the feed strip so it reads as real scrolling ---
+    if (feedScroll){
+      const feedFrom = 0.60, feedTo = 0.88;
+      const feedP = Math.max(0, Math.min(1, (P - feedFrom) / (feedTo - feedFrom)));
+      const maxShift = Math.max(0, feedScroll.scrollHeight - (feedScroll.parentElement.clientHeight - 70));
+      feedScroll.style.transform = `translateY(${-(feedP * maxShift).toFixed(1)}px)`;
+    }
+
+    // --- Scribble: fully drawn by the time the CTA reaches mid-viewport ---
+    const drawEnd = Math.max(1, scribbleEndY - vh * 0.5);
+    const drawPct = Math.max(0, Math.min(1, scrollY / drawEnd));
+    scribbleTop.style.setProperty('--draw', Math.min(1, drawPct / 0.40));
+    scribbleBot.style.setProperty('--draw', Math.max(0, Math.min(1, (drawPct - 0.40) / 0.60)));
+
+    // Ink flip at 34%
+    document.body.classList.toggle('flipped', pct >= 0.34);
+
+    // Frosted nav once content starts passing underneath
+    document.body.classList.toggle('scrolled', scrollY > 40);
+  }
+
+  let raf;
+  window.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); }, {passive:true});
+  window.addEventListener('resize', () => { layoutScribble(); tick(); });
+  window.addEventListener('load',   () => { layoutScribble(); tick(); });
+  window.__tick = () => { layoutScribble(); tick(); };
+  layoutScribble();
+  tick();
+</script>
+</body>
+</html>
