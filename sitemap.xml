@@ -16,6 +16,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://try-pause.com/blog/reduce-iphone-screen-time.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://try-pause.com/roadmap.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
