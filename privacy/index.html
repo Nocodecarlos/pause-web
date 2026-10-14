@@ -125,12 +125,12 @@
 <section class="hero">
   <div class="eyebrow">Legal</div>
   <h1>Privacy Policy</h1>
-  <p>Last updated: September 15, 2026</p>
+  <p>Last updated: October 14, 2026</p>
 </section>
 
 <main>
   <div class="legal">
-    <p>Pause ("the app," "I," "me") helps you use your selected apps more intentionally. I'm a solo, independent developer — there's no company or team behind Pause, just me — and I care about your privacy. Most of the app works entirely on your device, and I do not sell your personal information. I do not run my own servers to operate the core app — the one exception is the optional Send Feedback feature, described below. The free version of Pause shows ads through Google AdMob; you can remove ads by subscribing to Pause Premium.</p>
+    <p>Pause ("the app," "I," "me") helps you use your selected apps more intentionally. I'm a solo, independent developer — there's no company or team behind Pause, just me — and I care about your privacy. Most of the app works entirely on your device, and I do not sell your personal information. I do not run my own servers to operate the core app — the only exceptions are the optional Send Feedback feature and the optional News from Pause notifications, both described below. The free version of Pause shows ads through Google AdMob; you can remove ads by subscribing to Pause Premium.</p>
 
     <h2>Information and how it's handled</h2>
 
@@ -146,6 +146,10 @@
 
     <p><strong>Feedback you choose to send.</strong> If you use Settings → Send Feedback, I collect your name, your message, and your email address if you choose to give one (only so I can reply — it's optional). This is the one feature where Pause talks to a server I operate: your submission is stored in a database I run (via Supabase) and emailed to me so I can read and answer it myself. I use it only to understand and respond to your feedback. I don't use it for advertising, don't sell it, and don't share it with anyone else. If you'd like your feedback deleted, email me (below) and I'll remove it.</p>
 
+    <p><strong>News from Pause notifications (optional).</strong> If you turn on News from Pause (in Settings, or when the app invites you), I'll occasionally send you a notification about new features or seasonal puzzles — a few times a year. To deliver them, your device's Apple push notification token, the app version you're using, the environment the token belongs to, and your device's time zone are stored in a database I run (via Supabase). This information is not linked to your name, email, Apple ID, or anything else that identifies you; it's used only to send these announcements (for example, to let people on an older version know an update is available, or to time a message sensibly), never for advertising or tracking, and it's not sold or shared. Notifications are delivered through Apple's Push Notification service. Turning News from Pause off deletes your token from my database right away, and you can also turn off notifications for Pause anytime in iOS Settings.</p>
+
+    <p><strong>Gratitude puzzle and reminders.</strong> During November, the Gratitude puzzle asks you to list three things you're grateful for. Your answers are kept private on your device — they are never sent to me, to analytics, or to any server — and the optional gratitude reminders that bring them back to you are scheduled locally on your device, not sent from a server. You can delete your answers or turn the reminders off anytime in Settings.</p>
+
     <p><strong>Advertising (free version only).</strong> The free version of Pause displays ads using Google AdMob, a service provided by Google. To serve and measure ads, AdMob may collect and process certain information, including device identifiers, IP address, approximate (coarse) location derived from your IP address, device characteristics, and information about your interactions with ads. I have configured AdMob to serve non-personalized ads: your information is not used to build a personalized advertising profile, and I do not use Apple's Advertising Identifier (IDFA) to track you across other companies' apps and websites. AdMob still uses limited data to select contextual ads, cap how often you see an ad, measure performance, and prevent fraud and abuse. Google's use of this information is governed by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>. Subscribing to Pause Premium removes all ads.</p>
 
     <h2>Website analytics (try-pause.com)</h2>
@@ -153,7 +157,7 @@
 
     <h2>What I do and don't do</h2>
     <ul>
-      <li>I do not operate my own servers or collect your personal data on them — except for the optional Send Feedback feature, where a small server I run stores what you type and forwards it to me by email.</li>
+      <li>I do not operate my own servers or collect your personal data on them — except for the optional Send Feedback feature, where a small server I run stores what you type and forwards it to me by email, and the optional News from Pause notifications, which store an anonymous push token as described above.</li>
       <li>I do not sell or share your personal information.</li>
       <li>I do not have access to your name or email address unless you choose to send me feedback and enter them yourself.</li>
       <li>The app uses Google AdMob (free version only) and PostHog for anonymous product analytics, as described above — never your name, email, or which apps you've paused. This website separately uses cookie-based analytics as described below, with your consent.</li>
@@ -162,19 +166,20 @@
     <h2>Your choices</h2>
     <ul>
       <li>Remove ads by subscribing to Pause Premium.</li>
+      <li>Turn News from Pause notifications on or off anytime in the app's Settings, or turn off all notifications for Pause in iOS Settings &gt; Notifications.</li>
       <li>You can reset your device's advertising identifier or limit ad tracking in iOS Settings &gt; Privacy &amp; Security.</li>
       <li>Where required by law (for example, in the EEA and UK), I will ask for your consent before showing ads.</li>
       <li>On try-pause.com, you can change your cookie choice anytime: <a href="#" onclick="localStorage.removeItem('pause_analytics_consent'); location.reload(); return false;">manage cookie preferences</a>.</li>
     </ul>
 
     <h2>Data retention and deletion</h2>
-    <p>Your in-app data is stored on your device and your private iCloud. You can remove it anytime by signing out in the app or deleting the app. Feedback submitted through Send Feedback is kept on my server so I can read and respond to it; email me anytime to have a specific submission deleted.</p>
+    <p>Your in-app data is stored on your device and your private iCloud. You can remove it anytime by signing out in the app or deleting the app. Feedback submitted through Send Feedback is kept on my server so I can read and respond to it; email me anytime to have a specific submission deleted. If you've turned on News from Pause, your push token is kept only while it's on — turning it off deletes it, and tokens Apple reports as no longer valid (for example, after you delete the app) are removed automatically the next time I send an announcement.</p>
 
     <h2>Children's privacy</h2>
     <p>Pause is not directed to children under 13, and I do not knowingly collect personal information from children.</p>
 
     <h2>Apple's services</h2>
-    <p>Pause relies on Apple frameworks (Sign in with Apple, Screen Time / Family Controls, iCloud, and the App Store), which are governed by Apple's own Privacy Policy.</p>
+    <p>Pause relies on Apple frameworks (Sign in with Apple, Screen Time / Family Controls, iCloud, the Apple Push Notification service, and the App Store), which are governed by Apple's own Privacy Policy.</p>
 
     <h2>Changes to this policy</h2>
     <p>I may update this policy from time to time. Changes are posted here with an updated "Last updated" date.</p>
