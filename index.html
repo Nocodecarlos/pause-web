@@ -35,13 +35,13 @@
     pauseLoadAnalytics();
   }
 </script>
-<title>Pause: Doomscroll Blocker — Cut Screen Time & Refocus</title>
+<title>Pause: Stop Doom Scrolling on iPhone with a Quick Puzzle</title>
 <link rel="canonical" href="https://try-pause.com/">
-<meta name="description" content="Pause is the iPhone app that stops mindless scrolling before it starts. Solve a quick puzzle to unlock Instagram, TikTok, or any app — and give yourself a real moment to choose.">
+<meta name="description" content="Pause is an iPhone app that puts a short, calming puzzle in front of the apps you choose. Solve it, pick 5 to 20 minutes, and scroll on purpose instead of on autopilot.">
 <meta property="og:title" content="Pause: Doomscroll Blocker">
 <meta property="og:description" content="Cut screen time and refocus. Solve a quick puzzle to unlock the apps that eat your day.">
 <meta property="og:image" content="https://try-pause.com/assets/og-thumbnail.png">
-<meta property="og:url" content="https://try-pause.com">
+<meta property="og:url" content="https://try-pause.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pause: Doomscroll Blocker">
@@ -697,6 +697,108 @@
     .end h2{font-size:44px;margin-bottom:24px}
   }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://try-pause.com/#org",
+   "name": "Pause",
+   "url": "https://try-pause.com/",
+   "logo": "https://try-pause.com/assets/og-thumbnail.png",
+   "founder": {
+    "@type": "Person",
+    "name": "Carlos Velasquez"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://try-pause.com/#website",
+   "url": "https://try-pause.com/",
+   "name": "Pause",
+   "publisher": {
+    "@id": "https://try-pause.com/#org"
+   }
+  },
+  {
+   "@type": "MobileApplication",
+   "name": "Pause",
+   "operatingSystem": "iOS",
+   "applicationCategory": "LifestyleApplication",
+   "applicationSubCategory": "Productivity",
+   "description": "Pause puts a short puzzle in front of the iPhone apps you choose. Solve it, choose how long to unlock the app (5 to 20 minutes), and the pause comes back on its own.",
+   "url": "https://try-pause.com/",
+   "downloadUrl": "https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628",
+   "installUrl": "https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "category": "free"
+   },
+   "publisher": {
+    "@id": "https://try-pause.com/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is Pause free?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes — Pause offers a free, ad-supported version. You also get a 7-day free trial of the premium version, which unlocks all ten puzzles and removes ads."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Pause work on Android?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not yet. Pause is built on Apple's Screen Time technology, so it's iPhone-only for now."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is this different from iOS Screen Time?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Screen Time blocks an app outright behind a settings menu. Pause adds a small puzzle in the moment instead — so opening a paused app becomes a choice, not a reflex."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I delete Pause and get my apps back instantly?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Removing Pause removes every restriction immediately — nothing about your apps is permanently changed."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which apps can I pause?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Any app, category, or website — you choose during setup, and you can change your list anytime from Settings."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is my data private?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Pause uses Apple's Screen Time framework, and the apps you choose never leave your device."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<link rel="stylesheet" href="/assets/seasonal.css">
+<script src="/assets/seasonal.js"></script>
 </head>
 <body>
 
@@ -746,13 +848,13 @@
       <!-- Chapter 2 -->
       <article class="chapter" data-ch="1">
         <h2>Solve it.</h2>
-        <p>A quick word puzzle. Not willpower — just a moment of intention. Solve and the app unlocks for fifteen minutes.</p>
+        <p>A quick puzzle. Not willpower — just a moment of intention. Solve it, then choose how long the app stays open: 5, 10, 15 or 20 minutes.</p>
       </article>
 
       <!-- Chapter 3 -->
       <article class="chapter" data-ch="2">
-        <h2>Fifteen minutes<br>on purpose.</h2>
-        <p>You chose to open it, so use it the way you meant to. When the fifteen minutes are up, the pause comes back on its own.</p>
+        <h2>Your minutes,<br>on purpose.</h2>
+        <p>You chose to open it, so use it the way you meant to. When your time is up, the pause comes back on its own.</p>
       </article>
 
       <!-- Chapter 4 -->
@@ -927,19 +1029,19 @@
   <!-- After the story, the puzzle gallery -->
   <section class="beat puzzles-beat" id="puzzles">
     <div class="beat-inner">
-      <h2>Nine calming puzzles.</h2>
+      <h2>Ten calming puzzles.</h2>
       <p>A different kind of calm for every reach.</p>
     </div>
     <div class="puzzle-grid">
-      <figure class="puzzle-tile"><img src="assets/puzzles/word-jumble.png"      alt="Word Jumble">      <figcaption>Word Jumble</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/word-search.png"      alt="Word Search">      <figcaption>Word Search</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/matching-cards.png"   alt="Five Letters">     <figcaption>Five Letters</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/connect-the-dots.png" alt="Connect the Dots"> <figcaption>Connect the Dots</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/color-fill.png"       alt="Connect the Colors"><figcaption>Connect the Colors</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/maze.png"             alt="Maze">             <figcaption>Maze</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/ball-sort.png"        alt="Ball Sort">        <figcaption>Ball Sort</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/sliding-tile.png"     alt="Sliding Tile">     <figcaption>Sliding Tile</figcaption></figure>
-      <figure class="puzzle-tile"><img src="assets/puzzles/sixdoku.png"          alt="Sixdoku">          <figcaption>Sixdoku</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/word-jumble.jpg" alt="Word Jumble puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Word Jumble</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/word-search.jpg" alt="Word Search puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Word Search</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/matching-cards.jpg" alt="Memory Match puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Memory Match</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/connect-the-dots.jpg" alt="Connect the Dots puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Connect the Dots</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/color-fill.jpg" alt="Connect the Colors puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Connect the Colors</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/maze.jpg" alt="Maze puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Maze</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/ball-sort.jpg" alt="Ball Sort puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Ball Sort</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/sliding-tile.jpg" alt="Sliding Tile puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Sliding Tile</figcaption></figure>
+      <figure class="puzzle-tile"><img src="assets/puzzles/sixdoku.jpg" alt="Sixdoku puzzle" width="600" height="600" loading="lazy" decoding="async"><figcaption>Sixdoku</figcaption></figure>
     </div>
   </section>
 
@@ -993,7 +1095,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <h3>Is Pause free?</h3>
-        <p>Yes — Pause offers a free, ad-supported version. You also get a 7-day free trial of the premium version, which unlocks all nine puzzles and removes ads.</p>
+        <p>Yes — Pause offers a free, ad-supported version. You also get a 7-day free trial of the premium version, which unlocks all ten puzzles and removes ads.</p>
       </div>
       <div class="faq-item">
         <h3>Does Pause work on Android?</h3>

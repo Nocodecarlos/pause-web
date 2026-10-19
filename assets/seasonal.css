@@ -1,0 +1,81 @@
+/* Seasonal themes for try-pause.com, matching the app.
+   Enabled by /assets/seasonal.js, which adds `season-<name>` to <html>:
+   automatically by month (October = Halloween), or with ?season=halloween
+   to preview and ?season=none to turn it off. Without the class nothing
+   here applies, so the standard blue site is untouched. */
+
+/* ───────────────────────── Halloween (October) ───────────────────────── */
+
+html.season-halloween{
+  --navy:#2A1544;     /* app textPrimary: deep night purple */
+  --blue:#7A55D6;     /* app gradient mid */
+  --amber:#FF9A4D;    /* pumpkin, readable on purple and peach */
+}
+html.season-halloween,
+html.season-halloween body{background:#110739}
+
+/* Display type: the app's Halloween font. */
+html.season-halloween h1,
+html.season-halloween h2,
+html.season-halloween .wordmark,
+html.season-halloween .footer-mark,
+html.season-halloween .sc-title,
+html.season-halloween .feed-app{
+  font-family:'Metal Mania','Young Serif',serif;
+  letter-spacing:.01em;
+}
+
+/* Homepage: one page-long night-sky → lavender → pumpkin gradient. */
+html.season-halloween .page{
+  background:linear-gradient(180deg,
+    #110739 0%,
+    #2F115C 10%,
+    #4B2C9E 30%,
+    #7A55D6 46%,
+    #D9C8F5 60%,
+    #FFD9B0 80%,
+    #FF9A4D 100%
+  );
+}
+html.season-halloween .scribble .top{stroke:#FF9A4D}
+
+/* Phone mock-ups take on the app's Halloween screens. */
+html.season-halloween .scene-shield{background:#3A2270}
+html.season-halloween .shield-blur{
+  background:
+    radial-gradient(120% 80% at 20% 12%, rgba(246,99,45,.45), transparent 60%),
+    radial-gradient(120% 80% at 85% 30%, rgba(198,128,255,.5), transparent 62%),
+    #3A2270;
+}
+html.season-halloween .shield-btn{color:#F6632D}
+html.season-halloween .scene-puzzle,
+html.season-halloween .scene-success{
+  background:linear-gradient(180deg,#4B2C9E 0%,#7A55D6 55%,#C680FF 100%);
+}
+html.season-halloween .sc-card{
+  background:linear-gradient(180deg,rgba(217,200,245,.75),rgba(255,217,176,.75)),rgba(255,255,255,.4);
+}
+html.season-halloween .sc-title{color:#F6632D}
+
+/* Buttons: pumpkin, like the app's Solve Puzzle. */
+html.season-halloween .appstore,
+html.season-halloween body.flipped .appstore,
+html.season-halloween .end .appstore{background:#F6632D;color:#fff}
+html.season-halloween .navcta{border-color:#FF9A4D}
+
+/* Blog, roadmap, contact and privacy heroes. */
+html.season-halloween .hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#110739 0%,#4B2C9E 55%,#7A55D6 100%);
+}
+html.season-halloween .cta-box{background:linear-gradient(135deg,#2F115C,#7A55D6)}
+
+/* Moon, bats and web from the app's Halloween header. */
+.season-decor{display:none}
+html.season-halloween .season-decor{
+  display:block;position:absolute;top:58px;right:0;z-index:3;
+  width:min(560px,62vw);height:auto;pointer-events:none;
+}
+@media (max-width:820px){
+  html.season-halloween .season-decor{top:52px;width:78vw;opacity:.9}
+}
