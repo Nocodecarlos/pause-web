@@ -62,7 +62,11 @@ html.season-halloween .sc-title{color:#F6632D}
 html.season-halloween .appstore,
 html.season-halloween body.flipped .appstore,
 html.season-halloween .end .appstore{background:#F6632D;color:#fff}
-html.season-halloween .navcta{border-color:#FF9A4D}
+/* Nav Download: solid pumpkin so the web decor never shows through it. */
+html.season-halloween .navcta,
+html.season-halloween body.flipped .navcta{
+  background:#F6632D;border-color:#F6632D;color:#fff;opacity:1;
+}
 
 /* Blog, roadmap, contact and privacy heroes. */
 html.season-halloween .hero{
