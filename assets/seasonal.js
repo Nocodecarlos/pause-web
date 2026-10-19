@@ -32,7 +32,7 @@
       font: 'EB+Garamond:wght@500',
       label: 'Thanksgiving themed',
       decor: 'contour-lines.svg',
-      feature: '<img src="{dir}gratitude.jpg" alt="Gratitude puzzle" width="600" height="600" loading="lazy">' +
+      feature: '<img src="{dir}gratitude.jpg" alt="Gratitude puzzle" width="600" height="600">' +
         '<div><span class="chip">New for Thanksgiving</span><h3>Gratitude</h3>' +
         '<p>Instead of a puzzle, list three things you’re grateful for. They come back on your Pause screen all month, right when you reach for an app.</p>' +
         '<p class="note">Your answers are kept private on this phone.</p></div>'
