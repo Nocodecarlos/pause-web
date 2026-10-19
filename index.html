@@ -123,7 +123,7 @@
   .navlinks{display:flex;gap:36px;font-weight:300;font-size:14.5px;opacity:.82}
   .navlinks a{color:inherit;text-decoration:none}
   .navcta{
-    font-weight:500;font-size:14px;padding:11px 22px;border-radius:24px;
+    text-decoration:none;font-weight:500;font-size:14px;padding:11px 22px;border-radius:24px;
     border:1px solid currentColor;opacity:.9;cursor:pointer;background:transparent;color:inherit;
   }
   body.flipped nav{color:var(--navy)}
@@ -159,7 +159,10 @@
     margin-bottom:22px;
   }
   .sub .lead{display:block;font-weight:500;color:#fff;margin-bottom:6px}
-  .sub .cite{color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:3px}
+  .sub .fn-ref{font-size:.6em;line-height:0;margin-left:1px}
+  .sub .fn-ref a{color:var(--amber);text-decoration:none;font-weight:500}
+  .footnote{max-width:1180px;margin:0 auto 18px;font-size:12.5px;font-weight:300;line-height:1.5;color:rgba(9,38,99,.6)}
+  .footnote a{color:inherit}
   .sub, .chapter p{
     font-weight:300;font-size:19px;line-height:1.6;
     color:rgba(255,255,255,.82);max-width:520px;margin-bottom:32px;
@@ -800,8 +803,8 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="/assets/seasonal.css?v=3">
-<script src="/assets/seasonal.js?v=3"></script>
+<link rel="stylesheet" href="/assets/seasonal.css?v=4">
+<script src="/assets/seasonal.js?v=4"></script>
 </head>
 <body>
 
@@ -814,7 +817,7 @@
     <a href="blog/">Blog</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Download</a>
+  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Reclaim Your Time</a>
 </nav>
 
 <div class="page" id="page">
@@ -842,7 +845,7 @@
       <article class="chapter" data-ch="0">
         <div class="eyebrow">iPhone · Screen Time</div>
         <h1>Scroll on<br>purpose<span class="dot">.</span></h1>
-        <p class="sub"><strong class="lead">Keep your apps. Lose the autopilot.</strong> Americans check their phones 96 times a day, <a class="cite" href="https://www.asurion.com/about/press-releases/americans-check-their-phones-96-times-a-day/" target="_blank" rel="noopener">according to a 2019 Asurion survey</a>. Pause asks for a quick puzzle before your most distracting apps open, so going in is a choice.</p>
+        <p class="sub"><strong class="lead">Keep your apps. Lose the autopilot.</strong> Americans check their phones 96 times a day.<sup class="fn-ref"><a href="#fn-96" aria-label="Source">1</a></sup> Pause asks for a quick puzzle before your most distracting apps open.</p>
         <div class="cta-row">
           <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="appstore">Reclaim Your Time</a>
         </div>
@@ -1160,6 +1163,7 @@
   </section>
 
   <footer class="site-footer">
+    <p class="footnote" id="fn-96"><sup>1</sup> Asurion, <a href="https://www.asurion.com/about/press-releases/americans-check-their-phones-96-times-a-day/" target="_blank" rel="noopener">“Americans check their phones 96 times a day”</a>, survey of 1,998 U.S. smartphone users, August 2019.</p>
     <div class="footer-inner">
       <div class="footer-mark">Pause</div>
       <div class="footer-links">

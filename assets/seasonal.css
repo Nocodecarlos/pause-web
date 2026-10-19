@@ -62,10 +62,19 @@ html.season-halloween .sc-title{color:#F6632D}
 html.season-halloween .appstore,
 html.season-halloween body.flipped .appstore,
 html.season-halloween .end .appstore{background:#F6632D;color:#fff}
-/* Nav Download: solid pumpkin so the web decor never shows through it. */
-html.season-halloween .navcta,
-html.season-halloween body.flipped .navcta{
-  background:#F6632D;border-color:#F6632D;color:#fff;opacity:1;
+/* Nav CTA: a soft, frosted purple secondary button (the pumpkin one in the
+   hero is primary). The fill also keeps the web decor from showing through. */
+html.season-halloween .navcta{
+  background:rgba(122,85,214,.5);border-color:rgba(217,200,245,.35);color:#fff;opacity:1;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+html.season-halloween body.flipped .navcta{border-color:rgba(42,21,68,.15)}
+
+/* "Halloween themed" callout beside the hero's iPhone · Screen Time label. */
+.season-tag{display:none}
+html.season-halloween .season-tag{
+  display:inline-block;margin-left:10px;padding:5px 12px;border-radius:999px;
+  background:#F6632D;color:#fff;font-size:11px;letter-spacing:1.6px;vertical-align:1px;
 }
 
 /* Blog, roadmap, contact and privacy heroes. */

@@ -30,6 +30,15 @@
     decor.setAttribute('aria-hidden', 'true');
     document.body.appendChild(decor);
 
+    // Callout beside the hero label.
+    var label = document.querySelector('.chapter .eyebrow');
+    if (label) {
+      var tag = document.createElement('span');
+      tag.className = 'season-tag';
+      tag.textContent = 'Halloween themed';
+      label.appendChild(tag);
+    }
+
     // Puzzle gallery: the app's Halloween artwork, all ten puzzles.
     var grid = document.querySelector('.puzzle-grid');
     if (!grid) return;
