@@ -35,7 +35,7 @@
     if (label) {
       var tag = document.createElement('span');
       tag.className = 'season-tag';
-      tag.textContent = 'Halloween themed';
+      tag.textContent = ' · Halloween themed';
       label.appendChild(tag);
     }
 

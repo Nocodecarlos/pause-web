@@ -70,12 +70,10 @@ html.season-halloween .navcta{
 }
 html.season-halloween body.flipped .navcta{color:#2A1544;border-color:rgba(42,21,68,.15)}
 
-/* "Halloween themed" callout beside the hero's iPhone · Screen Time label. */
+/* "Halloween themed" beside the hero's iPhone · Screen Time label, styled
+   as part of the same label. */
 .season-tag{display:none}
-html.season-halloween .season-tag{
-  display:inline-block;margin-left:10px;padding:5px 12px;border-radius:999px;
-  background:#F6632D;color:#fff;font-size:11px;letter-spacing:1.6px;vertical-align:1px;
-}
+html.season-halloween .season-tag{display:inline}
 
 /* Blog, roadmap, contact and privacy heroes. */
 html.season-halloween .hero{
