@@ -278,7 +278,7 @@ html.season-thanksgiving article blockquote{border-left-color:#91464A}
 /* Gold contour lines across the top, from the app's header. */
 html.season-thanksgiving .season-decor{
   display:block;position:absolute;top:0;left:0;right:0;z-index:3;
-  width:100%;height:clamp(90px,12vw,190px);opacity:.75;pointer-events:none;
+  width:100%;height:clamp(110px,15vw,230px);opacity:.8;pointer-events:none;
 }
 
 html.season-thanksgiving .season-tag{display:inline}
