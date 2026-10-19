@@ -11,8 +11,9 @@ html.season-halloween{
   --blue:#7A55D6;     /* app gradient mid */
   --amber:#FF9A4D;    /* pumpkin, readable on purple and peach */
 }
-html.season-halloween,
-html.season-halloween body{background:#110739}
+/* Homepage only (it has .page); other pages keep their cream body. */
+html.season-halloween:has(.page),
+html.season-halloween:has(.page) body{background:#110739}
 
 /* Display type: the app's Halloween font. */
 html.season-halloween h1,
