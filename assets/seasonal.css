@@ -91,3 +91,194 @@ html.season-halloween .season-decor{
 @media (max-width:820px){
   html.season-halloween .season-decor{top:52px;width:78vw;opacity:.9}
 }
+
+/* ─────────────────────── Thanksgiving (November) ─────────────────────── */
+/* Light and cozy like the app's Thanksgiving theme: cream paper at the top,
+   wheat, then sage hills down to a forest-green footer. Ink stays dark the
+   whole way, so every "flipped" white-text state is pinned to ink here. */
+
+html.season-thanksgiving{
+  --navy:#342F28;     /* app textPrimary */
+  --blue:#91464A;     /* cranberry: links and accents */
+  --amber:#91464A;    /* eyebrows, the hero dot, footnote marker */
+  --cream:#FAF6EE;
+  --ink2:#68665B;
+  --sage:#9DAA80;
+  --forest:#2A3328;
+}
+html.season-thanksgiving,
+html.season-thanksgiving body{background:#FAF6EE;color:#342F28}
+
+/* Display type: EB Garamond, the app's Thanksgiving font. */
+html.season-thanksgiving h1,
+html.season-thanksgiving h2,
+html.season-thanksgiving .wordmark,
+html.season-thanksgiving .footer-mark,
+html.season-thanksgiving .sc-title,
+html.season-thanksgiving .pz-title,
+html.season-thanksgiving .feed-app,
+html.season-thanksgiving .blog-card h3,
+html.season-thanksgiving .cta-box h3,
+html.season-thanksgiving article blockquote{
+  font-family:'EB Garamond','Young Serif',serif;font-weight:500;letter-spacing:0;
+}
+
+/* Nav: ink on frosted cream; the button is the sage secondary. */
+html.season-thanksgiving nav,
+html.season-thanksgiving body.flipped nav,
+html.season-thanksgiving body.scrolled nav,
+html.season-thanksgiving body.scrolled.flipped nav{color:#342F28}
+html.season-thanksgiving body.scrolled nav,
+html.season-thanksgiving body.scrolled.flipped nav,
+html.season-thanksgiving body:not(:has(.page)) nav{
+  background:rgba(250,246,238,.78);border-bottom-color:rgba(52,47,40,.08);
+}
+@media (max-width:820px){
+  html.season-thanksgiving body nav,
+  html.season-thanksgiving body.flipped nav{background:rgba(250,246,238,.78);border-bottom-color:rgba(52,47,40,.08)}
+}
+html.season-thanksgiving .wordmark,
+html.season-thanksgiving .navlinks a,
+html.season-thanksgiving .navlinks a:hover{color:#342F28}
+html.season-thanksgiving .navcta,
+html.season-thanksgiving body.flipped .navcta{
+  background:rgba(157,170,128,.5);border-color:rgba(52,47,40,.12);color:#342F28;opacity:1;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+
+/* Homepage: one page-long paper → wheat → sage gradient (hills + forest
+   are drawn by the closing section and footer below). */
+html.season-thanksgiving:has(.page),
+html.season-thanksgiving:has(.page) body{background:#FAF6EE}
+html.season-thanksgiving .page{
+  background:linear-gradient(180deg,
+    #FAF6EE 0%,
+    #F4EDDF 22%,
+    #EEE1D2 45%,
+    #E9D9BF 70%,
+    #E6E3CF 100%
+  );
+}
+html.season-thanksgiving .page::before{opacity:.25}
+html.season-thanksgiving .scribble{display:none}
+
+html.season-thanksgiving h1,
+html.season-thanksgiving .chapter h2,
+html.season-thanksgiving .beat h2,
+html.season-thanksgiving body.flipped .chapter h2,
+html.season-thanksgiving body.flipped .beat h2{color:#342F28}
+html.season-thanksgiving .sub,
+html.season-thanksgiving .chapter p,
+html.season-thanksgiving .beat p,
+html.season-thanksgiving body.flipped .chapter p,
+html.season-thanksgiving body.flipped .beat p{color:#68665B}
+html.season-thanksgiving .sub .lead{color:#342F28}
+
+/* Buttons: cranberry, like the app's Solve Puzzle. */
+html.season-thanksgiving .appstore,
+html.season-thanksgiving body.flipped .appstore,
+html.season-thanksgiving .end .appstore{
+  background:#91464A;color:#FAF6EE;box-shadow:0 10px 24px rgba(145,70,74,.25);
+}
+html.season-thanksgiving .end-under{background:#342F28}
+
+/* Phone mock-ups: the app's Thanksgiving screens. */
+html.season-thanksgiving .statusbar{color:#342F28}
+html.season-thanksgiving .screen:has(.scene-feed.on) .statusbar{color:#fff}
+html.season-thanksgiving .sb-batt{border-color:currentColor;opacity:.8}
+html.season-thanksgiving .sb-batt::after,
+html.season-thanksgiving .sb-batt i{background:currentColor}
+html.season-thanksgiving .scene-shield{background:#F4F1EA}
+html.season-thanksgiving .shield-blur{
+  background:linear-gradient(180deg,#FAF6EE 0%,#F4EDDF 60%,#EEE1D2 100%);filter:none;opacity:1;
+}
+html.season-thanksgiving .shield-mark{color:#342F28}
+html.season-thanksgiving .shield-sub{color:#68665B}
+html.season-thanksgiving .shield-btn{background:#91464A;color:#FAF6EE}
+html.season-thanksgiving .scene-puzzle,
+html.season-thanksgiving .scene-success{
+  background:linear-gradient(180deg,#FAF6EE 0%,#F4EDDF 65%,#EEE1D2 100%);
+}
+html.season-thanksgiving .scene-success::before{background:rgba(52,47,40,.12)}
+html.season-thanksgiving .pz-round{color:#91464A;background:#F1E2DE}
+html.season-thanksgiving .pz-title{color:#342F28}
+html.season-thanksgiving .pz-sub{color:#68665B}
+html.season-thanksgiving .jt-slot,
+html.season-thanksgiving .jt-tile{
+  color:#342F28;background:#FFFAF3;backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:inset 0 0 0 1px #E3D6C2,0 2px 6px rgba(52,47,40,.08);
+}
+html.season-thanksgiving .jt-slot.filled::before,
+html.season-thanksgiving .jt-tile::before{background:transparent}
+html.season-thanksgiving .jt-tile.used{color:transparent;background:rgba(52,47,40,.04);box-shadow:inset 0 0 0 1px rgba(52,47,40,.12)}
+html.season-thanksgiving .sc-card{
+  background:#FFFAF3;box-shadow:0 0 0 1px #EFE4D6,0 10px 24px rgba(52,47,40,.12);
+}
+html.season-thanksgiving .sc-title{color:#91464A}
+html.season-thanksgiving .sc-sub{color:#68665B}
+html.season-thanksgiving .sc-check circle,
+html.season-thanksgiving .sc-check path{stroke:#91464A}
+
+/* Cards on the homepage: warm paper instead of frosted white. */
+html.season-thanksgiving .testi-card,
+html.season-thanksgiving .blog-card{
+  background:rgba(255,250,243,.8);border-color:#EFE4D6;box-shadow:0 12px 34px rgba(52,47,40,.06);
+}
+html.season-thanksgiving .stars{color:#D9A441}
+html.season-thanksgiving .testi-eyebrow,
+html.season-thanksgiving .faq-eyebrow,
+html.season-thanksgiving .blog-card .tag,
+html.season-thanksgiving .blog-card .meta,
+html.season-thanksgiving .testi-card figcaption{color:#68665B}
+
+/* Closing section sits on the app's layered hills; the footer is forest. */
+html.season-thanksgiving .end{
+  background:url(seasonal/thanksgiving/hills.jpg) center bottom/100% auto no-repeat;
+  justify-content:flex-start;padding-top:18vh;
+}
+html.season-thanksgiving .site-footer{background:#2A3328}
+html.season-thanksgiving .site-footer .footnote,
+html.season-thanksgiving .site-footer .footer-copy{color:rgba(250,246,238,.62)}
+html.season-thanksgiving .site-footer .footer-mark{color:#FAF6EE}
+html.season-thanksgiving .site-footer .footer-links a{color:rgba(250,246,238,.75)}
+html.season-thanksgiving .site-footer .footer-inner{border-top-color:rgba(250,246,238,.18)}
+
+/* Gratitude feature (added by seasonal.js above the puzzle grid). */
+.season-feature{display:none}
+html.season-thanksgiving .season-feature{
+  display:flex;align-items:center;gap:36px;max-width:1180px;margin:0 auto 40px;
+  padding:24px;border-radius:28px;background:#FFFAF3;border:1px solid #EFE4D6;
+  box-shadow:0 12px 34px rgba(52,47,40,.06);text-align:left;
+}
+html.season-thanksgiving .season-feature img{width:220px;height:220px;border-radius:20px;flex:0 0 auto}
+html.season-thanksgiving .season-feature .chip{
+  display:inline-block;padding:5px 12px;border-radius:999px;background:#F1E2DE;color:#91464A;
+  font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px;
+}
+html.season-thanksgiving .season-feature h3{font-family:'EB Garamond',serif;font-weight:500;font-size:40px;color:#342F28;margin-bottom:8px}
+html.season-thanksgiving .season-feature p{font-weight:300;font-size:17px;line-height:1.6;color:#68665B;margin:0 0 8px;max-width:none}
+html.season-thanksgiving .season-feature p.note{font-weight:500;font-size:14px}
+@media (max-width:820px){
+  html.season-thanksgiving .season-feature{flex-direction:column;align-items:flex-start;gap:18px;margin:0 20px 32px}
+  html.season-thanksgiving .season-feature img{width:100%;height:auto}
+}
+
+/* Blog, roadmap, contact and privacy: cream hero, ink type. */
+html.season-thanksgiving .hero{
+  position:relative;overflow:hidden;color:#342F28;
+  background:linear-gradient(180deg,#FAF6EE 0%,#F4EDDF 60%,#EEE1D2 100%);
+}
+html.season-thanksgiving .hero h1{color:#342F28}
+html.season-thanksgiving .hero p{color:#68665B}
+html.season-thanksgiving .cta-box{background:linear-gradient(135deg,#4A563F,#72875F)}
+html.season-thanksgiving .cta-box h3{color:#FAF6EE}
+html.season-thanksgiving .cta-box a{background:#FAF6EE;color:#342F28}
+html.season-thanksgiving article blockquote{border-left-color:#91464A}
+
+/* Gold contour lines across the top, from the app's header. */
+html.season-thanksgiving .season-decor{
+  display:block;position:absolute;top:0;left:0;right:0;z-index:3;
+  width:100%;height:clamp(90px,12vw,190px);opacity:.75;pointer-events:none;
+}
+
+html.season-thanksgiving .season-tag{display:inline}
