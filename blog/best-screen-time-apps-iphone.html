@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Gated behind cookie consent (see banner near end of <body>) — nothing
+  // below runs until the visitor clicks "Accept".
+  function pauseLoadAnalytics(){
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-41BC9Q0BG0';
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', 'G-41BC9Q0BG0');
+
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.uid=t.uid||[],t.uid.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tPxxYTZecbw68N8ZTjLtTDJawHavVP7KWQDt2kSNSm7E', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always'
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          posthog.capture('app_store_link_clicked', { link_location: link.className || 'unknown' });
+        });
+      });
+    });
+  }
+
+  if (localStorage.getItem('pause_analytics_consent') === 'granted') {
+    pauseLoadAnalytics();
+  }
+</script>
+<title>Which Screen Time App Is Best? 6 iPhone Apps Compared — Pause</title>
+<link rel="canonical" href="https://try-pause.com/blog/best-screen-time-apps-iphone.html">
+<meta name="description" content="An honest look at the most popular apps for cutting screen time and doomscrolling on iPhone: ScreenZen, Opal, ClearSpace, Forest, one sec and Pause. What each does best, what it costs, and who it suits.">
+<meta property="og:title" content="Which Screen Time App Is Best? 6 iPhone Apps Compared">
+<meta property="og:description" content="An honest look at the most popular apps for cutting screen time and doomscrolling on iPhone: ScreenZen, Opal, ClearSpace, Forest, one sec and Pause. What each does best, what it costs, and who it suits.">
+<meta property="og:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<meta property="og:url" content="https://try-pause.com/blog/best-screen-time-apps-iphone.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Which Screen Time App Is Best? 6 iPhone Apps Compared">
+<meta name="twitter:description" content="An honest look at the most popular apps for cutting screen time and doomscrolling on iPhone: ScreenZen, Opal, ClearSpace, Forest, one sec and Pause. What each does best, what it costs, and who it suits.">
+<meta name="twitter:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#092663;--blue:#1873EA;--amber:#FBBC48;--cream:#F7F4EE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 42px;color:#fff;
+    background:rgba(13,60,168,.72);
+    backdrop-filter:saturate(150%) blur(16px);
+    -webkit-backdrop-filter:saturate(150%) blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .wordmark{font-family:'Young Serif',serif;font-size:24px;color:#fff;text-decoration:none}
+  .navlinks{display:flex;gap:34px;font-weight:300;font-size:14.5px}
+  .navlinks a{color:rgba(255,255,255,.85);text-decoration:none}
+  .navlinks a:hover{color:#fff}
+  .navcta{
+    font-weight:500;font-size:14px;padding:10px 20px;border-radius:22px;
+    border:1px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;
+  }
+  @media (max-width:820px){ .navlinks{display:none} nav{padding:14px 20px} }
+
+  .hero{
+    padding:150px 24px 70px;text-align:center;
+    background:linear-gradient(180deg,#0B3DAE 0%,#1873EA 55%,#3E8CF0 100%);
+    color:#fff;
+  }
+  .eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--amber);margin-bottom:18px;
+  }
+  h1{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(32px,5vw,48px);margin-bottom:16px;line-height:1.15;max-width:760px;margin-left:auto;margin-right:auto}
+  .hero p{font-weight:300;font-size:16px;color:rgba(255,255,255,.75)}
+
+  article{max-width:680px;margin:0 auto;padding:64px 24px 40px;font-size:17px;line-height:1.7;font-weight:300}
+  article h2{font-family:'Young Serif',serif;font-weight:400;font-size:26px;margin:44px 0 16px;line-height:1.25;color:var(--navy)}
+  article p{margin-bottom:20px;color:rgba(9,38,99,.82)}
+  .table-wrap{overflow-x:auto;margin:0 0 28px;border-radius:14px;border:1px solid rgba(9,38,99,.12);background:#fff}
+  .table-wrap table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;line-height:1.5}
+  .table-wrap th,.table-wrap td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(9,38,99,.08);color:var(--navy)}
+  .table-wrap thead th{font-weight:600;background:rgba(9,38,99,.04)}
+  .table-wrap tbody th{font-weight:600}
+  .table-wrap tr:last-child td,.table-wrap tr:last-child th{border-bottom:0}
+  article strong{font-weight:600;color:var(--navy)}
+  article .lede{font-size:19px;font-weight:400;color:var(--navy)}
+  article ul{margin:0 0 24px 22px}
+  article li a{color:var(--blue)}
+  article li{margin-bottom:10px;color:rgba(9,38,99,.82)}
+  article blockquote{
+    margin:32px 0;padding:4px 0 4px 22px;border-left:3px solid var(--amber);
+    font-family:'Young Serif',serif;font-size:21px;font-weight:400;line-height:1.4;color:var(--navy);
+  }
+  .cta-box{
+    margin:48px 0 8px;padding:32px;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,#0B3DAE,#1873EA);color:#fff;
+  }
+  .cta-box h3{font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin-bottom:10px}
+  .cta-box p{color:rgba(255,255,255,.85);font-weight:300;margin-bottom:22px}
+  .cta-box a{
+    display:inline-block;background:#fff;color:var(--navy);text-decoration:none;
+    font-weight:600;font-size:15px;padding:13px 28px;border-radius:24px;
+  }
+
+  footer{padding:48px 24px 56px}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding-top:32px;
+    border-top:1px solid rgba(9,38,99,.12);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .footer-mark{font-family:'Young Serif',serif;font-size:19px}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-links a{color:rgba(9,38,99,.68);text-decoration:none;font-weight:400;font-size:13.5px}
+  .footer-links a:hover{color:var(--navy)}
+  .footer-copy{color:rgba(9,38,99,.48);font-weight:300;font-size:12.5px}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Which Screen Time App Is Best? ScreenZen, Opal, ClearSpace, Forest, one sec and Pause Compared",
+ "description": "An honest look at the most popular apps for cutting screen time and doomscrolling on iPhone: ScreenZen, Opal, ClearSpace, Forest, one sec and Pause. What each does best, what it costs, and who it suits.",
+ "datePublished": "2026-10-20",
+ "dateModified": "2026-10-20",
+ "author": {
+  "@type": "Person",
+  "name": "Carlos Velasquez",
+  "jobTitle": "Founder of Pause",
+  "url": "https://try-pause.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "@id": "https://try-pause.com/#org",
+  "name": "Pause",
+  "url": "https://try-pause.com/",
+  "logo": "https://try-pause.com/assets/og-thumbnail.png",
+  "founder": {
+   "@type": "Person",
+   "name": "Carlos Velasquez"
+  }
+ },
+ "mainEntityOfPage": "https://try-pause.com/blog/best-screen-time-apps-iphone.html",
+ "image": "https://try-pause.com/assets/og-thumbnail.png"
+}
+</script>
+<link rel="stylesheet" href="/assets/seasonal.css?v=6">
+<script src="/assets/seasonal.js?v=6"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="wordmark">Pause</a>
+  <div class="navlinks">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/#puzzles">Puzzles</a>
+    <a href="../roadmap.html">Roadmap</a>
+    <a href="/blog/">Blog</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Reclaim Your Time</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">App Comparison</div>
+  <h1>Which Screen Time App Is Best? ScreenZen, Opal, ClearSpace, Forest, one sec and Pause Compared</h1>
+  <p>By Carlos Velasquez, founder of Pause · October 20, 2026 · 9 min read</p>
+</section>
+
+<article>
+  <p class="lede">There's no single best screen time app. There's the best one for the way <em>you</em> get pulled into your phone. Some people need a wall they can't climb. Others just need a second to notice what their thumb is doing. Here are six of the most popular options on iPhone, including the one I make, with what each does best and where it falls short.</p>
+  <p><em>Full disclosure: I'm the founder of Pause, one of the six. I've tried to describe every app the way its own makers would, using each company's website and its US App Store listing. Ratings and prices change often, so check the listing before you decide. Last checked: October 20, 2026.</em></p>
+
+  <h2>The short answer</h2>
+  <ul>
+    <li><strong>Best free option:</strong> ScreenZen. It's donation-supported and free, with no subscription.</li>
+    <li><strong>Strictest blocking:</strong> Opal. Its hardest mode can't be turned off once it starts.</li>
+    <li><strong>Best backed by research:</strong> one sec. A peer-reviewed study found its pause made people open their target apps about a third less often.</li>
+    <li><strong>Best for accountability:</strong> ClearSpace, with challenges and accountability partners.</li>
+    <li><strong>Best for focus sessions:</strong> Forest, which grows a tree while you stay off your phone.</li>
+    <li><strong>Best if you want a few seconds of real attention instead of a wait:</strong> Pause, which asks for a short puzzle before an app opens.</li>
+  </ul>
+
+  <h2>Two approaches: walls and speed bumps</h2>
+  <p>Almost every app here does one of two things. <strong>Walls</strong> block an app on a schedule or after a limit, so you can't get in. <strong>Speed bumps</strong> let you in, but only after a short pause: a wait, a breath, a question, or a puzzle. Walls are great for protected time like work or sleep. Speed bumps are built for the all-day, half-conscious checking that adds up to hours.</p>
+  <p>Speed bumps sound too gentle to work, but the best evidence we have says otherwise. In a six-week field study of 280 people published in <em>PNAS</em> in 2023, one sec's pause led users to back out of about 36% of their attempts to open a target app, and to try opening those apps about 37% less often overall. (One of the study's authors is one sec's founder, so weigh it accordingly. It's still the strongest public evidence I know of for this kind of app.)</p>
+
+  <h2>At a glance</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>App</th><th>How it stops you</th><th>Platforms</th><th>Price (US App Store)</th><th>Rating</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>ScreenZen</th><td>A wait before the app opens, which can grow each time; limits and schedules</td><td>iPhone, iPad, Mac; Android and Windows per its site</td><td>Free, optional tips</td><td>4.9 (52K)</td></tr>
+        <tr><th>Opal</th><td>Blocks apps and websites on a schedule or after a limit; a strict mode you can't cancel</td><td>iPhone, Mac, Android</td><td>Free download; plans up to $99.99/year</td><td>4.7 (~90K)</td></tr>
+        <tr><th>ClearSpace</th><td>A deep breath before the app opens, or opt out; limits, schedules, challenges, accountability partners</td><td>iPhone</td><td>Free download; $6.99/month, yearly plans from $44.99</td><td>4.7 (8.9K)</td></tr>
+        <tr><th>Forest</th><td>Blocks apps during timed focus sessions and on a schedule</td><td>iPhone, iPad, Android, Chrome, Firefox</td><td>Free download; Forest Plus subscriptions</td><td>4.8 (50K)</td></tr>
+        <tr><th>one sec</th><td>A breathing pause before the app opens, then it can kick you out again after a set time</td><td>iPhone, iPad, Mac; Android and browsers per its site</td><td>Free for one app; $6.99/month, $19.99/year, $99.99 lifetime</td><td>4.8 (24K)</td></tr>
+        <tr><th>Pause</th><td>A short puzzle before the app opens, then you choose 5 to 20 minutes</td><td>iPhone</td><td>Free download; 7-day trial, then $4.99/month or $49.99/year</td><td>5.0 (9)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>ScreenZen</h2>
+  <p>ScreenZen adds a delay before the apps you choose, and that delay can grow longer each time you open the same app. Around it are daily limits, schedules by day and time, prompts like "Is this important," breathing exercises while an app is locked, a strict mode, and a settings lock so you can't quietly change the rules mid-craving.</p>
+  <p><strong>What it does best:</strong> it gives away for free what most apps here charge for, and it's very thoughtfully built. <strong>Worth knowing:</strong> some people learn to wait out a timer on autopilot, which is the main reason they look for something else.</p>
+
+  <h2>Opal</h2>
+  <p>Opal is the most complete blocking toolkit here. You can block apps and websites on a schedule, set daily limits, run a focus timer, and track your day as an Opal Score. Its strictest mode can't be cancelled or bypassed once it starts, and blocking follows you to your Mac.</p>
+  <p><strong>What it does best:</strong> firm, cross-device walls for people who need to be kept out. <strong>Worth knowing:</strong> it's the priciest option, and strict modes can feel heavy for everyday use. The iPhone app needs iOS 18 or later.</p>
+
+  <h2>ClearSpace</h2>
+  <p>ClearSpace asks you to take a deep breath before a limited app opens, then lets you continue or opt out. It adds limits, schedules, and two things the others mostly don't: Screen Time Challenges, which include exercises like pushups, and accountability partners who can help you keep your goals.</p>
+  <p><strong>What it does best:</strong> making your goals social and physical, not just a setting. <strong>Worth knowing:</strong> the full app is a paid subscription, and it's iPhone only.</p>
+
+  <h2>Forest</h2>
+  <p>Forest turns focus into a game. Start a timer and a virtual tree grows while you stay off your phone. During a session, its Allow List blocks distracting apps; outside sessions, Time Guard blocks apps on a schedule. Forest also says it has funded over 2 million real trees through the nonprofit Trees for the Future.</p>
+  <p><strong>What it does best:</strong> study and deep-work sessions, with a reward you can see. <strong>Worth knowing:</strong> it's built around sessions you start on purpose, so it does less for random checking during the day.</p>
+
+  <h2>one sec</h2>
+  <p>one sec pioneered the speed-bump approach: a short breathing animation before a distracting app opens, with the option to back out. It can also bring the pause back after a set time, so a quick look doesn't quietly become an hour. It's free for one app, works with websites through a Safari extension, and is the only app here with a peer-reviewed study behind it.</p>
+  <p><strong>What it does best:</strong> evidence and polish, with a lifetime purchase option. <strong>Worth knowing:</strong> the pause is a breath, not a task, so like any wait it can become routine.</p>
+
+  <h2>Pause</h2>
+  <p>Pause is the one I build, and it's also a speed bump. When you open an app you've chosen, Pause asks you to solve a short puzzle first, like Word Jumble, Five Letters or Ball Sort. Then you pick how long to stay, from 5 to 20 minutes, and the pause comes back on its own when the time is up. You can set named free windows, like lunch, and see how many times you walked away.</p>
+  <p>I built it around a puzzle because a few seconds of real attention is harder to do on autopilot than watching a countdown. That's my bet, not a proven result: unlike one sec, Pause hasn't been through a published study.</p>
+  <p><strong>What it does best:</strong> keeping your apps while breaking the reflex, with something calm to do in the moment. <strong>Worth knowing:</strong> it's iPhone only, the newest and smallest app here (9 ratings at the time of writing), and it has no lock-you-out mode by design. If you need a hard wall, Opal is stricter.</p>
+
+  <h2>How to choose</h2>
+  <ol>
+    <li><strong>Notice how you break your own limits.</strong> If you override them on purpose and regret it, you want a wall: Opal, or Forest during work. If you open apps without thinking, you want a speed bump: ScreenZen, one sec, ClearSpace or Pause.</li>
+    <li><strong>Pick the speed bump that holds your attention.</strong> A wait (ScreenZen), a breath (one sec, ClearSpace), a physical challenge (ClearSpace) or a puzzle (Pause). The best one is the one you won't learn to ignore.</li>
+    <li><strong>Start free.</strong> ScreenZen is free, one sec is free for one app, and the rest have free downloads or trials. Try one for a week before paying for anything.</li>
+  </ol>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>ScreenZen: <a href="https://www.screenzen.co/">screenzen.co</a> and <a href="https://apps.apple.com/us/app/screenzen-screen-time-control/id1541027222">App Store listing</a></li>
+    <li>Opal: <a href="https://opalapp.com/">opalapp.com</a> and <a href="https://apps.apple.com/us/app/opal-screen-time-control/id1497465230">App Store listing</a></li>
+    <li>ClearSpace: <a href="https://apps.apple.com/us/app/clearspace-screentime-control/id1572515807">App Store listing</a></li>
+    <li>Forest: <a href="https://www.forestapp.cc/">forestapp.cc</a> and <a href="https://apps.apple.com/us/app/forest-focus-for-productivity/id866450515">App Store listing</a></li>
+    <li>one sec: <a href="https://one-sec.app/research/">one-sec.app/research</a> and <a href="https://apps.apple.com/us/app/one-sec-screen-time-focus/id1532875441">App Store listing</a></li>
+    <li>Grüning, Riedel &amp; Lorenz-Spreen (2023), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9974409">“Directing smartphone use through the self-nudge app one sec”</a>, <em>PNAS</em> 120(8)</li>
+    <li>Pause: <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628">App Store listing</a></li>
+  </ul>
+
+  <h2>Keep reading</h2>
+  <ul>
+    <li><a href="/blog/screenzen-alternative.html">Looking for a ScreenZen Alternative? 3 Options for iPhone</a></li>
+    <li><a href="/blog/opal-alternative.html">Looking for an Opal Alternative? 3 Options for iPhone</a></li>
+  </ul>
+  <div class="cta-box">
+    <h3>Keep your apps. Lose the autopilot.</h3>
+    <p>Pause adds a quick puzzle in front of the apps you want to use less. Free to download, iPhone only.</p>
+    <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628">Download on the App Store</a>
+  </div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">Pause</div>
+    <div class="footer-links">
+      <a href="../roadmap.html">Roadmap</a>
+      <a href="/blog/">Blog</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy/">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Pause. Made for scrolling on purpose.</div>
+  </div>
+</footer>
+
+
+<div id="pause-cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:640px;margin:0 auto;background:#092663;color:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-family:'Poppins',system-ui,sans-serif;">
+  <p style="margin:0 0 14px;font-size:14px;line-height:1.5;font-weight:300;">I use cookies to understand how visitors interact with the website. No data is sold. <a href="../privacy/" style="color:#FBBC48;text-decoration:underline;">Privacy Policy</a></p>
+  <div style="display:flex;gap:12px;justify-content:flex-end;">
+    <button id="pause-cookie-decline" style="background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">Decline</button>
+    <button id="pause-cookie-accept" style="background:#1873EA;border:none;color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Accept</button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'pause_analytics_consent';
+  if (localStorage.getItem(KEY)) return; // already decided on a prior visit
+  var banner = document.getElementById('pause-cookie-banner');
+  banner.style.display = 'block';
+  document.getElementById('pause-cookie-accept').onclick = function () {
+    localStorage.setItem(KEY, 'granted');
+    banner.style.display = 'none';
+    if (typeof pauseLoadAnalytics === 'function') pauseLoadAnalytics();
+  };
+  document.getElementById('pause-cookie-decline').onclick = function () {
+    localStorage.setItem(KEY, 'denied');
+    banner.style.display = 'none';
+  };
+})();
+</script>
+</body>
+</html>
