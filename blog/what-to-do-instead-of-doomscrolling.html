@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Gated behind cookie consent (see banner near end of <body>) — nothing
+  // below runs until the visitor clicks "Accept".
+  function pauseLoadAnalytics(){
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-41BC9Q0BG0';
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', 'G-41BC9Q0BG0');
+
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.uid=t.uid||[],t.uid.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tPxxYTZecbw68N8ZTjLtTDJawHavVP7KWQDt2kSNSm7E', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always'
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          posthog.capture('app_store_link_clicked', { link_location: link.className || 'unknown' });
+        });
+      });
+    });
+  }
+
+  if (localStorage.getItem('pause_analytics_consent') === 'granted') {
+    pauseLoadAnalytics();
+  }
+</script>
+<title>What to Do Instead of Doomscrolling (When Boredom Hits) — Pause</title>
+<meta name="description" content="What to do instead of doomscrolling: plan one small replacement for each moment you usually scroll, and make your phone a little more boring first. A practical menu and a one-week plan.">
+<meta property="og:title" content="What to Do Instead of Doomscrolling (When Boredom Hits)">
+<meta property="og:description" content="What to do instead of doomscrolling: plan one small replacement for each moment you usually scroll, and make your phone a little more boring first. A practical menu and a one-week plan.">
+<meta property="og:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<meta property="og:url" content="https://try-pause.com/blog/what-to-do-instead-of-doomscrolling.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What to Do Instead of Doomscrolling (When Boredom Hits)">
+<meta name="twitter:description" content="What to do instead of doomscrolling: plan one small replacement for each moment you usually scroll, and make your phone a little more boring first. A practical menu and a one-week plan.">
+<meta name="twitter:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#092663;--blue:#1873EA;--amber:#FBBC48;--cream:#F7F4EE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 42px;color:#fff;
+    background:rgba(13,60,168,.72);
+    backdrop-filter:saturate(150%) blur(16px);
+    -webkit-backdrop-filter:saturate(150%) blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .wordmark{font-family:'Young Serif',serif;font-size:24px;color:#fff;text-decoration:none}
+  .navlinks{display:flex;gap:34px;font-weight:300;font-size:14.5px}
+  .navlinks a{color:rgba(255,255,255,.85);text-decoration:none}
+  .navlinks a:hover{color:#fff}
+  .navcta{
+    font-weight:500;font-size:14px;padding:10px 20px;border-radius:22px;
+    border:1px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;
+  }
+  @media (max-width:820px){ .navlinks{display:none} nav{padding:14px 20px} }
+
+  .hero{
+    padding:150px 24px 70px;text-align:center;
+    background:linear-gradient(180deg,#0B3DAE 0%,#1873EA 55%,#3E8CF0 100%);
+    color:#fff;
+  }
+  .eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--amber);margin-bottom:18px;
+  }
+  h1{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(32px,5vw,48px);margin-bottom:16px;line-height:1.15;max-width:760px;margin-left:auto;margin-right:auto}
+  .hero p{font-weight:300;font-size:16px;color:rgba(255,255,255,.75)}
+
+  article{max-width:680px;margin:0 auto;padding:64px 24px 40px;font-size:17px;line-height:1.7;font-weight:300}
+  article h2{font-family:'Young Serif',serif;font-weight:400;font-size:26px;margin:44px 0 16px;line-height:1.25;color:var(--navy)}
+  article p{margin-bottom:20px;color:rgba(9,38,99,.82)}
+  article ul{margin:0 0 24px 22px}
+  article li{margin-bottom:10px;color:rgba(9,38,99,.82)}
+  article li a{color:var(--blue)}
+  article strong{font-weight:600;color:var(--navy)}
+  article .lede{font-size:19px;font-weight:400;color:var(--navy)}
+  article blockquote{
+    margin:32px 0;padding:4px 0 4px 22px;border-left:3px solid var(--amber);
+    font-family:'Young Serif',serif;font-size:21px;font-weight:400;line-height:1.4;color:var(--navy);
+  }
+  .cta-box{
+    margin:48px 0 8px;padding:32px;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,#0B3DAE,#1873EA);color:#fff;
+  }
+  .cta-box h3{font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin-bottom:10px}
+  .cta-box p{color:rgba(255,255,255,.85);font-weight:300;margin-bottom:22px}
+  .cta-box a{
+    display:inline-block;background:#fff;color:var(--navy);text-decoration:none;
+    font-weight:600;font-size:15px;padding:13px 28px;border-radius:24px;
+  }
+
+  footer{padding:48px 24px 56px}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding-top:32px;
+    border-top:1px solid rgba(9,38,99,.12);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .footer-mark{font-family:'Young Serif',serif;font-size:19px}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-links a{color:rgba(9,38,99,.68);text-decoration:none;font-weight:400;font-size:13.5px}
+  .footer-links a:hover{color:var(--navy)}
+  .footer-copy{color:rgba(9,38,99,.48);font-weight:300;font-size:12.5px}
+  article > h3{font-family:'Young Serif',serif;font-weight:400;font-size:20px;margin:30px 0 10px;line-height:1.3;color:var(--navy)}
+</style>
+<link rel="canonical" href="https://try-pause.com/blog/what-to-do-instead-of-doomscrolling.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "What to Do Instead of Doomscrolling (When Boredom Hits)",
+ "description": "What to do instead of doomscrolling: plan one small replacement for each moment you usually scroll, and make your phone a little more boring first. A practical menu and a one-week plan.",
+ "datePublished": "2026-11-03",
+ "dateModified": "2026-11-03",
+ "author": {
+  "@type": "Person",
+  "name": "Carlos Velasquez",
+  "jobTitle": "Founder of Pause",
+  "url": "https://try-pause.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "@id": "https://try-pause.com/#org",
+  "name": "Pause",
+  "url": "https://try-pause.com/",
+  "logo": "https://try-pause.com/assets/og-thumbnail.png",
+  "founder": {
+   "@type": "Person",
+   "name": "Carlos Velasquez"
+  }
+ },
+ "mainEntityOfPage": "https://try-pause.com/blog/what-to-do-instead-of-doomscrolling.html",
+ "image": "https://try-pause.com/assets/og-thumbnail.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What should I do instead of scrolling when I'm bored?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Pick something small that fits the moment and needs no setup: a few pages of a book in the morning, a pocket notebook while you wait, a short walk on a work break, an album with a hobby in the evening. The best replacement is the one you decided on before the boredom hit."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "I quit Reels. What changes?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The first few days usually feel restless and flat, because the quick hits are gone and nothing has replaced them yet. After that, most people notice boredom becomes tolerable again, longer things like books, films and conversations get easier to sit through, and evenings feel longer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I enjoy hobbies again after years of scrolling?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Start shorter than feels worthwhile, around 20 minutes, and keep the phone out of the room. Put on music instead of a screen so there's something in the background without a feed. The enjoyment tends to come back after a few sessions, not during the first one."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I just delete social media?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You can, but deleting everything at once often fails because it leaves a gap with nothing in it. Most people do better making the apps slower and less appealing, with greyscale, a speed bump before they open, and a phone-away time at night, while building replacements for the moments they used to scroll."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does it take to stop doomscrolling?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The first two or three days are usually the hardest. Within a week or two most people stop reaching for the phone in every idle moment, as long as they've set up something to reach for instead."
+   }
+  }
+ ]
+}
+</script>
+<link rel="stylesheet" href="/assets/seasonal.css?v=7">
+<script src="/assets/seasonal.js?v=7"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="wordmark">Pause</a>
+  <div class="navlinks">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/#puzzles">Puzzles</a>
+    <a href="../roadmap.html">Roadmap</a>
+    <a href="/blog/">Blog</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Reclaim Your Time</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Doomscrolling</div>
+  <h1>What to Do Instead of Doomscrolling (When Boredom Hits)</h1>
+  <p>By Carlos Velasquez, founder of Pause · November 3, 2026 · 7 min read</p>
+</section>
+
+<article>
+  <p class="lede">Instead of doomscrolling, do one small, specific thing you picked ahead of time for that moment: a few pages of a book with your morning coffee, a pocket notebook while you wait in line, a walk on your work break, music and a hobby in the evening. It also helps to make your phone a little more boring first, so the replacement has a fair chance against the feed.</p>
+
+  <p>That's the short answer. The rest of this post is the longer one, built from the questions I get asked most when I talk to people trying to cut back.</p>
+
+  <h2>Why deleting everything usually backfires</h2>
+  <p>The most common first move is the big one: delete Instagram, TikTok and YouTube, maybe all of them at once. It feels great for about a day.</p>
+
+  <p>Then day 2 arrives. You're in line, or on the couch after dinner, and you reach for your phone out of pure habit. The app isn't there, and nothing else is either. That itchy, flat, slightly restless feeling is real, and it's the point where most people reinstall. Not because they lack willpower, but because they removed the thing that filled every idle minute and didn't put anything in its place. That's the boredom vacuum, and it's why quitting cold turkey rarely sticks (I wrote more about this in <a href="/blog/screen-time-control-vs-digital-detox.html">screen time control vs. digital detox</a>).</p>
+
+  <blockquote>You don't beat a habit by leaving a hole. You beat it by deciding, ahead of time, what goes in the hole.</blockquote>
+
+  <h2>A replacement menu, by moment</h2>
+  <p>Scrolling isn't one habit. It's a handful of moments in your day where the phone became the default. So instead of a list of 50 hobbies, plan one option for each moment.</p>
+
+  <h3>Mornings</h3>
+  <p><strong>Read a few pages before you unlock your phone.</strong> Keep a book where your phone usually sits in the morning, next to the coffee maker or on the nightstand. The goal isn't a chapter. Five pages is enough to start the day on something you chose instead of whatever the algorithm picked overnight.</p>
+
+  <h3>Waiting minutes</h3>
+  <p><strong>Carry a pocket notebook.</strong> Lines, waiting rooms, the five minutes before a meeting. These are the moments where the phone comes out without you deciding anything. A small notebook gives your hands and your head something to do: jot a to-do, a thought, a sketch, what you'll cook tonight. It sounds old-fashioned, and that's sort of the point. It never refreshes.</p>
+
+  <h3>Work breaks</h3>
+  <p><strong>Leave your desk and leave the phone on it.</strong> A short walk, a glass of water, a stretch, a chat with a coworker. A break spent scrolling doesn't actually feel like a break, because your attention never got to rest. Ten minutes away from all screens usually leaves you sharper than ten minutes on a feed.</p>
+
+  <h3>Evenings</h3>
+  <p><strong>Pick a hobby and put on music, not a screen.</strong> Drawing, cooking, an instrument, a puzzle, working on something with your hands. Music fills the silence that used to send you to your phone, without a feed attached. And try the <strong>one screen rule</strong>: if you're watching a show, just watch the show. Scrolling while the TV plays means you're barely doing either.</p>
+
+  <h3>Bed</h3>
+  <p><strong>Phone away at 10pm.</strong> Plug it in somewhere you can't reach from bed, ideally another room, and use a cheap alarm clock if the phone is your alarm. Late-night scrolling is the hardest kind to stop once you've started, so the easiest fix is to make it physically inconvenient before you start.</p>
+
+  <h2>Make your phone boring first</h2>
+  <p>Replacements work much better when the phone isn't quite so loud. Two changes do most of the work:</p>
+  <ul>
+    <li><strong>Turn on greyscale.</strong> On iPhone it's in Settings → Accessibility → Display &amp; Text Size → Color Filters. Feeds are designed around color, and without it the whole phone gets noticeably less interesting. You can add it to the Accessibility Shortcut (triple-click the side button) to toggle it when you actually need color.</li>
+    <li><strong>Add friction before the apps you open on autopilot.</strong> Anything that puts a few seconds between the tap and the feed: a wait timer, a breathing screen, a short puzzle. That gap is enough to turn a reflex into a choice. This is what Pause does, but plenty of tools do a version of it, and I compare them in <a href="/blog/best-screen-time-apps-iphone.html">which screen time app is best</a>.</li>
+  </ul>
+
+  <p>Some people also try <strong>device splitting</strong>: keep social media only on a tablet or laptop that stays at home, and keep the phone for messages, maps and calls. If the feed only lives on a device you have to go sit down with, the waiting-in-line scroll disappears on its own.</p>
+
+  <h2>A one-week starter plan</h2>
+  <p>Don't do all of this at once. Here's a gentle way to ease in:</p>
+  <ul>
+    <li><strong>Day 1:</strong> Check your Screen Time and write down your top three apps and the moments you use them most. No changes yet.</li>
+    <li><strong>Day 2:</strong> Turn on greyscale. Add friction to your single worst app.</li>
+    <li><strong>Day 3:</strong> Start the 10pm phone-away habit. Charge it outside the bedroom.</li>
+    <li><strong>Day 4:</strong> Put a pocket notebook in your bag or pocket for waiting minutes.</li>
+    <li><strong>Day 5:</strong> Try one work break with the phone left behind.</li>
+    <li><strong>Day 6:</strong> Do one music-only hobby session, about 20 minutes.</li>
+    <li><strong>Day 7:</strong> Check Screen Time again. Keep what worked, drop what didn't.</li>
+  </ul>
+
+  <p>If you want the background on why the pull is so strong in the first place, <a href="/blog/why-you-cant-stop-doomscrolling.html">why you can't stop doomscrolling</a> covers it.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>What should I do instead of scrolling when I'm bored?</h3>
+  <p>Pick something small that fits the moment and needs no setup: a few pages of a book in the morning, a pocket notebook while you wait, a short walk on a work break, an album with a hobby in the evening. The best replacement is the one you decided on before the boredom hit.</p>
+
+  <h3>I quit Reels. What changes?</h3>
+  <p>The first few days usually feel restless and flat, because the quick hits are gone and nothing has replaced them yet. After that, most people notice boredom becomes tolerable again, longer things like books, films and conversations get easier to sit through, and evenings feel longer.</p>
+
+  <h3>How do I enjoy hobbies again after years of scrolling?</h3>
+  <p>Start shorter than feels worthwhile, around 20 minutes, and keep the phone out of the room. Put on music instead of a screen so there's something in the background without a feed. The enjoyment tends to come back after a few sessions, not during the first one.</p>
+
+  <h3>Should I just delete social media?</h3>
+  <p>You can, but deleting everything at once often fails because it leaves a gap with nothing in it. Most people do better making the apps slower and less appealing, with greyscale, a speed bump before they open, and a phone-away time at night, while building replacements for the moments they used to scroll.</p>
+
+  <h3>How long does it take to stop doomscrolling?</h3>
+  <p>The first two or three days are usually the hardest. Within a week or two most people stop reaching for the phone in every idle moment, as long as they've set up something to reach for instead.</p>
+
+  <h2>What this looked like for me</h2>
+  <p>At my worst I was spending about 9 hours a day on Instagram. Today it's around 1. No single trick did that. It was greyscale, friction before the app, the phone leaving my bedroom at night, and slowly having better things to do in the moments I used to fill with scrolling. The last part is the one that made it stick.</p>
+
+  <p>You don't need to get to zero. You just need the scrolling you do to be scrolling you chose.</p>
+
+  <h2>Keep reading</h2>
+  <ul>
+    <li><a href="/blog/why-you-cant-stop-doomscrolling.html">Why You Can't Stop Doomscrolling (And What Actually Helps)</a></li>
+    <li><a href="/blog/screen-time-control-vs-digital-detox.html">Screen Time Control Apps vs. Digital Detox: What Actually Works</a></li>
+    <li><a href="/blog/best-screen-time-apps-iphone.html">Which Screen Time App Is Best? ScreenZen, Opal, ClearSpace, Forest, one sec and Pause Compared</a></li>
+  </ul>
+  <div class="cta-box">
+    <h3>Want a little friction?</h3>
+    <p>Pause puts a short puzzle before the apps you open on autopilot. Free for one app, iPhone only.</p>
+    <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628">Download on the App Store</a>
+  </div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">Pause</div>
+    <div class="footer-links">
+      <a href="../roadmap.html">Roadmap</a>
+      <a href="/blog/">Blog</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy/">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Pause. Made for scrolling on purpose.</div>
+  </div>
+</footer>
+
+
+<div id="pause-cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:640px;margin:0 auto;background:#092663;color:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-family:'Poppins',system-ui,sans-serif;">
+  <p style="margin:0 0 14px;font-size:14px;line-height:1.5;font-weight:300;">I use cookies to understand how visitors interact with the website. No data is sold. <a href="../privacy/" style="color:#FBBC48;text-decoration:underline;">Privacy Policy</a></p>
+  <div style="display:flex;gap:12px;justify-content:flex-end;">
+    <button id="pause-cookie-decline" style="background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">Decline</button>
+    <button id="pause-cookie-accept" style="background:#1873EA;border:none;color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Accept</button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'pause_analytics_consent';
+  if (localStorage.getItem(KEY)) return; // already decided on a prior visit
+  var banner = document.getElementById('pause-cookie-banner');
+  banner.style.display = 'block';
+  document.getElementById('pause-cookie-accept').onclick = function () {
+    localStorage.setItem(KEY, 'granted');
+    banner.style.display = 'none';
+    if (typeof pauseLoadAnalytics === 'function') pauseLoadAnalytics();
+  };
+  document.getElementById('pause-cookie-decline').onclick = function () {
+    localStorage.setItem(KEY, 'denied');
+    banner.style.display = 'none';
+  };
+})();
+</script>
+</body>
+</html>
