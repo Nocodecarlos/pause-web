@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Gated behind cookie consent (see banner near end of <body>) — nothing
+  // below runs until the visitor clicks "Accept".
+  function pauseLoadAnalytics(){
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-41BC9Q0BG0';
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', 'G-41BC9Q0BG0');
+
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.uid=t.uid||[],t.uid.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tPxxYTZecbw68N8ZTjLtTDJawHavVP7KWQDt2kSNSm7E', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always'
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          posthog.capture('app_store_link_clicked', { link_location: link.className || 'unknown' });
+        });
+      });
+    });
+  }
+
+  if (localStorage.getItem('pause_analytics_consent') === 'granted') {
+    pauseLoadAnalytics();
+  }
+</script>
+<title>How to Stop Scrolling in Bed (When You Know You Should Sleep) — Pause</title>
+<meta name="description" content="Can&#x27;t put your phone down at night? Here&#x27;s why bedtime scrolling is so sticky, what it does to your sleep, and simple ways to stop scrolling in bed.">
+<meta property="og:title" content="How to Stop Scrolling in Bed (When You Know You Should Sleep)">
+<meta property="og:description" content="Can&#x27;t put your phone down at night? Here&#x27;s why bedtime scrolling is so sticky, what it does to your sleep, and simple ways to stop scrolling in bed.">
+<meta property="og:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<meta property="og:url" content="https://try-pause.com/blog/how-to-stop-scrolling-in-bed.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Stop Scrolling in Bed (When You Know You Should Sleep)">
+<meta name="twitter:description" content="Can&#x27;t put your phone down at night? Here&#x27;s why bedtime scrolling is so sticky, what it does to your sleep, and simple ways to stop scrolling in bed.">
+<meta name="twitter:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#092663;--blue:#1873EA;--amber:#FBBC48;--cream:#F7F4EE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 42px;color:#fff;
+    background:rgba(13,60,168,.72);
+    backdrop-filter:saturate(150%) blur(16px);
+    -webkit-backdrop-filter:saturate(150%) blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .wordmark{font-family:'Young Serif',serif;font-size:24px;color:#fff;text-decoration:none}
+  .navlinks{display:flex;gap:34px;font-weight:300;font-size:14.5px}
+  .navlinks a{color:rgba(255,255,255,.85);text-decoration:none}
+  .navlinks a:hover{color:#fff}
+  .navcta{
+    font-weight:500;font-size:14px;padding:10px 20px;border-radius:22px;
+    border:1px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;
+  }
+  @media (max-width:820px){ .navlinks{display:none} nav{padding:14px 20px} }
+
+  .hero{
+    padding:150px 24px 70px;text-align:center;
+    background:linear-gradient(180deg,#0B3DAE 0%,#1873EA 55%,#3E8CF0 100%);
+    color:#fff;
+  }
+  .eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--amber);margin-bottom:18px;
+  }
+  h1{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(32px,5vw,48px);margin-bottom:16px;line-height:1.15;max-width:760px;margin-left:auto;margin-right:auto}
+  .hero p{font-weight:300;font-size:16px;color:rgba(255,255,255,.75)}
+
+  article{max-width:680px;margin:0 auto;padding:64px 24px 40px;font-size:17px;line-height:1.7;font-weight:300}
+  article h2{font-family:'Young Serif',serif;font-weight:400;font-size:26px;margin:44px 0 16px;line-height:1.25;color:var(--navy)}
+  article p{margin-bottom:20px;color:rgba(9,38,99,.82)}
+  article ul{margin:0 0 24px 22px}
+  article li{margin-bottom:10px;color:rgba(9,38,99,.82)}
+  article li a{color:var(--blue)}
+  article strong{font-weight:600;color:var(--navy)}
+  article .lede{font-size:19px;font-weight:400;color:var(--navy)}
+  article blockquote{
+    margin:32px 0;padding:4px 0 4px 22px;border-left:3px solid var(--amber);
+    font-family:'Young Serif',serif;font-size:21px;font-weight:400;line-height:1.4;color:var(--navy);
+  }
+  .cta-box{
+    margin:48px 0 8px;padding:32px;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,#0B3DAE,#1873EA);color:#fff;
+  }
+  .cta-box h3{font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin-bottom:10px}
+  .cta-box p{color:rgba(255,255,255,.85);font-weight:300;margin-bottom:22px}
+  .cta-box a{
+    display:inline-block;background:#fff;color:var(--navy);text-decoration:none;
+    font-weight:600;font-size:15px;padding:13px 28px;border-radius:24px;
+  }
+
+  footer{padding:48px 24px 56px}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding-top:32px;
+    border-top:1px solid rgba(9,38,99,.12);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .footer-mark{font-family:'Young Serif',serif;font-size:19px}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-links a{color:rgba(9,38,99,.68);text-decoration:none;font-weight:400;font-size:13.5px}
+  .footer-links a:hover{color:var(--navy)}
+  .footer-copy{color:rgba(9,38,99,.48);font-weight:300;font-size:12.5px}
+  article > h3{font-family:'Young Serif',serif;font-weight:400;font-size:20px;margin:30px 0 10px;line-height:1.3;color:var(--navy)}
+  article ul.sources li{font-size:14.5px;margin-bottom:8px}
+</style>
+<link rel="canonical" href="https://try-pause.com/blog/how-to-stop-scrolling-in-bed.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "How to Stop Scrolling in Bed (When You Know You Should Sleep)",
+ "description": "Can't put your phone down at night? Here's why bedtime scrolling is so sticky, what it does to your sleep, and simple ways to stop scrolling in bed.",
+ "datePublished": "2026-11-18",
+ "dateModified": "2026-11-18",
+ "author": {
+  "@type": "Person",
+  "name": "Carlos Velasquez",
+  "jobTitle": "Founder of Pause",
+  "url": "https://try-pause.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "@id": "https://try-pause.com/#org",
+  "name": "Pause",
+  "url": "https://try-pause.com/",
+  "logo": "https://try-pause.com/assets/og-thumbnail.png",
+  "founder": {
+   "@type": "Person",
+   "name": "Carlos Velasquez"
+  }
+ },
+ "mainEntityOfPage": "https://try-pause.com/blog/how-to-stop-scrolling-in-bed.html",
+ "image": "https://try-pause.com/assets/og-thumbnail.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Why can't I stop scrolling at night?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "By bedtime you're tired and low on self-control, and a feed has no natural ending. Researchers call putting off bed when nothing is stopping you \"bedtime procrastination,\" and it's linked to lower self-regulation and getting less sleep."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it bad to scroll in bed before sleep?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It can be. In one large study, every extra hour of screen time after getting into bed was linked to 59% higher odds of insomnia symptoms and about 24 minutes less sleep. A few minutes of something you enjoy isn't the problem. Losing an hour or two is."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long before bed should I stop using my phone?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Thirty minutes is a good place to start. In a small trial, people who stayed off their phones for the 30 minutes before bed fell asleep faster and slept longer after four weeks."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why do short videos keep me awake?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You get something brand new every few seconds, so there's never a quiet stretch for your brain to wind down. Screens before bed have also been shown to delay melatonin and push your body clock later."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I stop scrolling in bed without deleting my apps?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Give the scroll an ending that doesn't rely on willpower. Set a hard stop with a timer or an app like Pause, charge your phone away from your bed, and have something boring ready for when you put it down."
+   }
+  }
+ ]
+}
+</script>
+<body>) — nothing
+  // below runs until the visitor clicks "Accept".
+  function pauseLoadAnalytics(){
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-41BC9Q0BG0';
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', 'G-41BC9Q0BG0');
+
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.uid=t.uid||[],t.uid.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tPxxYTZecbw68N8ZTjLtTDJawHavVP7KWQDt2kSNSm7E', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always'
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          posthog.capture('app_store_link_clicked', { link_location: link.className || 'unknown' });
+        });
+      });
+    });
+  }
+
+  if (localStorage.getItem('pause_analytics_consent') === 'granted') {
+    pauseLoadAnalytics();
+  }
+</script>
+<title>Why Scrolling Feels Like Rest (And Why It Usually Isn't) — Pause</title>
+<meta name="description" content="Scrolling feels like a break, but research says it rarely recharges you. Here's why your brain reads the feed as rest, and what actually helps you recover.">
+<meta property="og:title" content="Why Scrolling Feels Like Rest (And Why It Usually Isn't)">
+<meta property="og:description" content="Scrolling feels like a break, but research says it rarely recharges you. Here's why your brain reads the feed as rest, and what actually helps you recover.">
+<meta property="og:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<meta property="og:url" content="https://try-pause.com/blog/why-scrolling-feels-like-rest.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Scrolling Feels Like Rest (And Why It Usually Isn't)">
+<meta name="twitter:description" content="Scrolling feels like a break, but research says it rarely recharges you. Here's why your brain reads the feed as rest, and what actually helps you recover.">
+<meta name="twitter:image" content="https://try-pause.com/assets/og-thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#092663;--blue:#1873EA;--amber:#FBBC48;--cream:#F7F4EE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 42px;color:#fff;
+    background:rgba(13,60,168,.72);
+    backdrop-filter:saturate(150%) blur(16px);
+    -webkit-backdrop-filter:saturate(150%) blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .wordmark{font-family:'Young Serif',serif;font-size:24px;color:#fff;text-decoration:none}
+  .navlinks{display:flex;gap:34px;font-weight:300;font-size:14.5px}
+  .navlinks a{color:rgba(255,255,255,.85);text-decoration:none}
+  .navlinks a:hover{color:#fff}
+  .navcta{
+    font-weight:500;font-size:14px;padding:10px 20px;border-radius:22px;
+    border:1px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;
+  }
+  @media (max-width:820px){ .navlinks{display:none} nav{padding:14px 20px} }
+
+  .hero{
+    padding:150px 24px 70px;text-align:center;
+    background:linear-gradient(180deg,#0B3DAE 0%,#1873EA 55%,#3E8CF0 100%);
+    color:#fff;
+  }
+  .eyebrow{
+    font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--amber);margin-bottom:18px;
+  }
+  h1{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(32px,5vw,48px);margin-bottom:16px;line-height:1.15;max-width:760px;margin-left:auto;margin-right:auto}
+  .hero p{font-weight:300;font-size:16px;color:rgba(255,255,255,.75)}
+
+  article{max-width:680px;margin:0 auto;padding:64px 24px 40px;font-size:17px;line-height:1.7;font-weight:300}
+  article h2{font-family:'Young Serif',serif;font-weight:400;font-size:26px;margin:44px 0 16px;line-height:1.25;color:var(--navy)}
+  article p{margin-bottom:20px;color:rgba(9,38,99,.82)}
+  article ul{margin:0 0 24px 22px}
+  article li{margin-bottom:10px;color:rgba(9,38,99,.82)}
+  article li a{color:var(--blue)}
+  article strong{font-weight:600;color:var(--navy)}
+  article .lede{font-size:19px;font-weight:400;color:var(--navy)}
+  article blockquote{
+    margin:32px 0;padding:4px 0 4px 22px;border-left:3px solid var(--amber);
+    font-family:'Young Serif',serif;font-size:21px;font-weight:400;line-height:1.4;color:var(--navy);
+  }
+  .cta-box{
+    margin:48px 0 8px;padding:32px;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,#0B3DAE,#1873EA);color:#fff;
+  }
+  .cta-box h3{font-family:'Young Serif',serif;font-weight:400;font-size:24px;margin-bottom:10px}
+  .cta-box p{color:rgba(255,255,255,.85);font-weight:300;margin-bottom:22px}
+  .cta-box a{
+    display:inline-block;background:#fff;color:var(--navy);text-decoration:none;
+    font-weight:600;font-size:15px;padding:13px 28px;border-radius:24px;
+  }
+
+  footer{padding:48px 24px 56px}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding-top:32px;
+    border-top:1px solid rgba(9,38,99,.12);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .footer-mark{font-family:'Young Serif',serif;font-size:19px}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-links a{color:rgba(9,38,99,.68);text-decoration:none;font-weight:400;font-size:13.5px}
+  .footer-links a:hover{color:var(--navy)}
+  .footer-copy{color:rgba(9,38,99,.48);font-weight:300;font-size:12.5px}
+  article > h3{font-family:'Young Serif',serif;font-weight:400;font-size:20px;margin:30px 0 10px;line-height:1.3;color:var(--navy)}
+  article ul.sources li{font-size:14.5px;margin-bottom:8px}
+</style>
+<link rel="canonical" href="https://try-pause.com/blog/why-scrolling-feels-like-rest.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Why Scrolling Feels Like Rest (And Why It Usually Isn't)",
+ "description": "Scrolling feels like a break, but research says it rarely recharges you. Here's why your brain reads the feed as rest, and what actually helps you recover.",
+ "datePublished": "2026-11-11",
+ "dateModified": "2026-11-11",
+ "author": {
+  "@type": "Person",
+  "name": "Carlos Velasquez",
+  "jobTitle": "Founder of Pause",
+  "url": "https://try-pause.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "@id": "https://try-pause.com/#org",
+  "name": "Pause",
+  "url": "https://try-pause.com/",
+  "logo": "https://try-pause.com/assets/og-thumbnail.png",
+  "founder": {
+   "@type": "Person",
+   "name": "Carlos Velasquez"
+  }
+ },
+ "mainEntityOfPage": "https://try-pause.com/blog/why-scrolling-feels-like-rest.html",
+ "image": "https://try-pause.com/assets/og-thumbnail.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Why does scrolling feel relaxing?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Because it's low effort, it takes your mind off work and worries, and the feed hands out unpredictable little rewards that keep you hopeful about the next post. All of that feels like rest, even though your attention is still working the whole time."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is scrolling on my phone a real break?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually not. In a Rutgers study, students who took their break on a phone felt the most mentally fatigued and performed about as well afterward as students who took no break at all."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why do I feel tired after scrolling?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your attention never really gets a rest while you scroll, and passive browsing has been linked to lower mood and more envy. A lot of people also feel worse afterward simply because the time feels wasted."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it bad to scroll before bed?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Late night scrolling often eats into your sleep, which is the one kind of rest you can't replace. If you do scroll at night, decide on your stopping point before you open the app."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How much scrolling is okay?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "There isn't a magic number. Short sessions you actually chose tend to feel very different from the open-ended ones. That's the whole reason Pause sessions top out at 20 minutes."
+   }
+  }
+ ]
+}
+</script>
+<link rel="stylesheet" href="/assets/seasonal.css?v=7">
+<script src="/assets/seasonal.js?v=7"></script>
+<script src="/assets/nav.js?v=1" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="wordmark">Pause</a>
+  <div class="navlinks">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/#puzzles">Puzzles</a>
+    <a href="../roadmap.html">Roadmap</a>
+    <a href="/blog/">Blog</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628" class="navcta">Reclaim Your Time</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Sleep</div>
+  <h1>Bedtime Scrolling: Why You Can&#x27;t Put Your Phone Down at Night (And How to Stop)</h1>
+  <p>By Carlos Velasquez, founder of Pause · November 18, 2026 · 7 min read</p>
+</section>
+
+<article>
+  <p class="lede">"Just 15 minutes, then I'm going to sleep."</p>
+
+  <p>If you've ever said that to yourself in bed, phone in hand, this one's for you. Because I said it pretty much every night, and it was almost never 15 minutes.</p>
+
+  <p>Before I had Pause, my nights went like this. I'd get in bed, open TikTok, and somehow the algorithm always knew exactly what to show me at night. For me it was music. Covers, electro beats, all kinds of music I'd find on TikTok. And here's the funny part: I'm not a musician. I don't play a single instrument. I just really enjoy music, and the feed figured that out fast haha.</p>
+
+  <p>So it was one video after another. And those "15 minutes" would turn into an hour and a half of me just scrolling.</p>
+
+  <p>The worst part wasn't even the lost time. It was what it did to me. A new video every 15 seconds, 30 seconds, a minute... it just wipes the sleepiness right out of you. I'd go in tired and come out wide awake. Not entertained, not relaxed, just hooked, going over and over.</p>
+
+  <p>If that sounds familiar, you're not weak and you're not broken. Bedtime scrolling is one of the most common habits out there, and there are real reasons it's so hard to stop. Let's talk about why it happens, what it actually does to your sleep, and how to stop scrolling in bed without having to throw your phone across the room.</p>
+
+  <h2>Why bedtime scrolling is so hard to stop</h2>
+
+  <p>Night is when the feed has the most power over you, and it's not a coincidence. A few things stack up at once.</p>
+
+  <h3>You're at your most tired</h3>
+
+  <p>By bedtime you've spent the whole day making decisions, holding it together at work, taking care of people. There's not much self-control left in the tank.</p>
+
+  <p>Researchers actually have a name for this. In 2014, a team in the Netherlands described <strong>bedtime procrastination</strong> as "failing to go to bed at the intended time" when nothing is stopping you. In their survey of 177 people, those with lower self-regulation scores procrastinated on bedtime more, and bedtime procrastination predicted not getting enough sleep (<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.00611/full">Kroese et al., 2014</a>).</p>
+
+  <p>There's also a version where you stay up because it's the only time of day that feels like yours. I wrote about that one, revenge bedtime procrastination, in <a href="/blog/why-scrolling-feels-like-rest.html">Why Scrolling Feels Like Rest</a>.</p>
+
+  <h3>There's no natural place to stop</h3>
+
+  <p>A TV episode ends. A chapter ends. A feed never does. There's always one more video loading under your thumb, so the decision to stop is 100% on you, at the exact moment you have the least energy to make it. (More on that in <a href="/blog/why-you-cant-stop-doomscrolling.html">Why You Can't Stop Doomscrolling</a>.)</p>
+
+  <h3>Short videos keep restarting the clock</h3>
+
+  <p>This is the one that got me. Every 15 to 60 seconds you get something brand new. A new song, a new face, a new joke. Your brain never gets the boring, quiet stretch it needs to start winding down. So instead of drifting off, you get a little jolt, then another, then another.</p>
+
+  <h3>"Just 15 minutes" has no edge</h3>
+
+  <p>When you tell yourself 15 minutes, nothing actually happens at minute 15. No bell, no screen going dark. Your plan lives only in your head, and the app has no idea you made it.</p>
+
+  <h2>What scrolling in bed actually does to your sleep</h2>
+
+  <p>The short version: it takes time away from sleep, and it can make the sleep you do get start later. Here's what the research says.</p>
+
+  <h3>Every hour in bed on a screen costs you</h3>
+
+  <p>A big 2025 study of Norwegian university students looked at screen use after getting into bed. Each extra hour of screen time in bed was linked to <strong>59% higher odds of insomnia symptoms</strong> and about <strong>24 minutes less sleep</strong> (<a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2025.1548273/full">Hjetland et al., 2025</a>).</p>
+
+  <p>What surprised me: social media wasn't worse than other screen activities in that study. The researchers think the main problem is simply that screen time pushes sleep time out. So it's less about which app and more about how long you stay on it. That's honestly good news, because time is something you can control.</p>
+
+  <p>One honest note: this was a survey taken at one point in time, so it shows a link, not proof that screens cause insomnia.</p>
+
+  <h3>Screens can push your body clock later</h3>
+
+  <p>In a sleep lab study, people who read on a light-emitting device before bed took longer to fall asleep, felt less sleepy in the evening, released less melatonin, had their body clock shifted later, and were less alert the next morning, compared with reading a printed book (<a href="https://pure.psu.edu/en/publications/evening-use-of-light-emitting-ereaders-negatively-affects-sleep-c/">Chang et al., 2015</a>).</p>
+
+  <p>That study was about e-readers, not TikTok. But a phone glowing a few inches from your face is the same basic idea, and a feed is a lot more exciting than an e-book.</p>
+
+  <h3>You're far from the only one</h3>
+
+  <p>The same paper cites a survey of 1,508 American adults where <strong>90% used some kind of electronics within an hour of bedtime</strong> at least a few nights a week. So if you scroll in bed, you're in very big company.</p>
+
+  <h3>And it makes the next day harder</h3>
+
+  <p>Less sleep means a more tired you tomorrow, which means less self-control tomorrow night, which makes the feed even harder to put down. It's a loop. The good part is that loops can be broken from either end.</p>
+
+  <h2>How to stop scrolling in bed</h2>
+
+  <p>You don't need to quit your phone or delete every app. You need an edge, something that ends the scroll for you so it doesn't all depend on tired, 11 p.m. you.</p>
+
+  <h3>1. Give yourself a phone-free stretch before sleep</h3>
+
+  <p>In a small randomized trial, 38 people were split into two groups, and one group was asked to stay off their phone for the <strong>30 minutes before bed</strong> for four weeks. That group fell asleep faster, slept longer, reported better sleep quality, did better on a working memory test, and felt more positive (<a href="https://doaj.org/article/1198ff0a00b64c9e872d9e552a126928">PLoS ONE, 2020</a>). It was a pilot study, so it's small, but 30 minutes is a very doable place to start.</p>
+
+  <h3>2. Make the stopping point real, not just a promise</h3>
+
+  <p>"15 more minutes" in your head is easy to ignore. A timer, a lock, or an app that actually closes the session is much harder to ignore. The stop needs to come from outside you, because the feed won't give you one.</p>
+
+  <h3>3. Charge your phone away from your pillow</h3>
+
+  <p>If the phone is across the room, scrolling means getting up. That one little bit of effort is often enough to make you go "eh, never mind" and roll over.</p>
+
+  <h3>4. Use the tools already on your iPhone</h3>
+
+  <p>Sleep Focus and Downtime can quiet notifications and limit apps at night. They help, but the catch is that they're easy to tap past when you're half asleep. I go into why in <a href="/blog/reduce-iphone-screen-time.html">How to Reduce Screen Time on Your iPhone</a>.</p>
+
+  <h3>5. Have a boring backup plan</h3>
+
+  <p>When you put the phone down, have something low-key ready: a paper book, a podcast with the screen off, stretching, or just lying there. Boring is the point. If you need ideas, here's <a href="/blog/what-to-do-instead-of-doomscrolling.html">What to Do Instead of Doomscrolling</a>.</p>
+
+  <h3>6. Don't beat yourself up over one bad night</h3>
+
+  <p>You'll slip sometimes. Everyone does. One long scroll doesn't erase your progress. Just pick it back up tomorrow night.</p>
+
+  <h2>How Pause changed my nights</h2>
+
+  <p>Pause is a simple screen time and doomscrolling app. Before you open one of your distracting apps, it gives you a short puzzle. Once you solve it, you get a session of up to 20 minutes, so you still get the fun part of social media without getting pulled into the endless part.</p>
+
+  <p>Here's what my bedtime looks like now.</p>
+
+  <p>About 15 or 20 minutes before I want to be asleep, I open the puzzle. And honestly? A lot of nights I don't even finish it. Somewhere in the middle I just go "you know what, I'm tired," put the phone down, and I'm out. That tiny pause is enough to remind me what I actually wanted, which was sleep.</p>
+
+  <p>Other nights I do solve it, and then I get about 15 minutes of stuff I genuinely enjoy. Laughing at a few videos, finding some music I like. It's good. It feels like a treat, not a trap.</p>
+
+  <p>Then the session ends and the app gets blocked. Could I do another puzzle? Sure. But by then it usually feels like a natural stopping point. I had a good scroll, now it's time to sleep. That's the edge I never had before.</p>
+
+  <p>It's not about guilt, and it's not about deleting everything. It's just giving your night an ending.</p>
+
+  <div class="cta-box">
+    <h3>Try it for yourself</h3>
+    <p>Pause adds a few seconds of intention before the apps that eat your day. Free for one app, iPhone only.</p>
+    <a href="https://apps.apple.com/us/app/pause-mindful-scrolling/id6781665628">Download on the App Store</a>
+  </div>
+
+  <h2>FAQ</h2>
+  <h3>Why can't I stop scrolling at night?</h3>
+  <p>By bedtime you're tired and low on self-control, and a feed has no natural ending. Researchers call putting off bed when nothing is stopping you "bedtime procrastination," and it's linked to lower self-regulation and getting less sleep.</p>
+
+  <h3>Is it bad to scroll in bed before sleep?</h3>
+  <p>It can be. In one large study, every extra hour of screen time after getting into bed was linked to 59% higher odds of insomnia symptoms and about 24 minutes less sleep. A few minutes of something you enjoy isn't the problem. Losing an hour or two is.</p>
+
+  <h3>How long before bed should I stop using my phone?</h3>
+  <p>Thirty minutes is a good place to start. In a small trial, people who stayed off their phones for the 30 minutes before bed fell asleep faster and slept longer after four weeks.</p>
+
+  <h3>Why do short videos keep me awake?</h3>
+  <p>You get something brand new every few seconds, so there's never a quiet stretch for your brain to wind down. Screens before bed have also been shown to delay melatonin and push your body clock later.</p>
+
+  <h3>How do I stop scrolling in bed without deleting my apps?</h3>
+  <p>Give the scroll an ending that doesn't rely on willpower. Set a hard stop with a timer or an app like Pause, charge your phone away from your bed, and have something boring ready for when you put it down.</p>
+
+  <h2>Keep reading</h2>
+  <ul>
+    <li><a href="/blog/why-scrolling-feels-like-rest.html">Why Scrolling Feels Like Rest (And Why It Usually Isn't)</a></li>
+    <li><a href="/blog/why-you-cant-stop-doomscrolling.html">Why You Can't Stop Doomscrolling (And What Actually Helps)</a></li>
+    <li><a href="/blog/what-to-do-instead-of-doomscrolling.html">What to Do Instead of Doomscrolling (When Boredom Hits)</a></li>
+  </ul>
+
+  <h2>Sources</h2>
+  <p>All read November 16, 2026.</p>
+  <ul class="sources">
+    <li>Kroese, F., De Ridder, D., Evers, C., &amp; Adriaanse, M. (2014). Bedtime procrastination: introducing a new area of procrastination. <em>Frontiers in Psychology</em>, 5. <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.00611/full">doi:10.3389/fpsyg.2014.00611</a></li>
+    <li>Hjetland, G. J., Skogen, J. C., Hysing, M., Gradisar, M., &amp; Sivertsen, B. (2025). How and when screens are used: comparing different screen activities and sleep in Norwegian university students. <em>Frontiers in Psychiatry</em>, 16, 1548273. <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2025.1548273/full">doi:10.3389/fpsyt.2025.1548273</a></li>
+    <li>Chang, A. M., Aeschbach, D., Duffy, J. F., &amp; Czeisler, C. A. (2015). Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness. <em>PNAS</em>, 112(4), 1232-1237. <a href="https://pure.psu.edu/en/publications/evening-use-of-light-emitting-ereaders-negatively-affects-sleep-c/">Penn State record</a></li>
+    <li>Effect of restricting bedtime mobile phone use on sleep, arousal, mood, and working memory: A randomized pilot trial. <em>PLoS ONE</em> (2020). <a href="https://doaj.org/article/1198ff0a00b64c9e872d9e552a126928">DOAJ record</a></li>
+  </ul>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">Pause</div>
+    <div class="footer-links">
+      <a href="../roadmap.html">Roadmap</a>
+      <a href="/blog/">Blog</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy/">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Pause. Made for scrolling on purpose.</div>
+  </div>
+</footer>
+
+
+<div id="pause-cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:640px;margin:0 auto;background:#092663;color:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-family:'Poppins',system-ui,sans-serif;">
+  <p style="margin:0 0 14px;font-size:14px;line-height:1.5;font-weight:300;">I use cookies to understand how visitors interact with the website. No data is sold. <a href="../privacy/" style="color:#FBBC48;text-decoration:underline;">Privacy Policy</a></p>
+  <div style="display:flex;gap:12px;justify-content:flex-end;">
+    <button id="pause-cookie-decline" style="background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">Decline</button>
+    <button id="pause-cookie-accept" style="background:#1873EA;border:none;color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Accept</button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'pause_analytics_consent';
+  if (localStorage.getItem(KEY)) return; // already decided on a prior visit
+  var banner = document.getElementById('pause-cookie-banner');
+  banner.style.display = 'block';
+  document.getElementById('pause-cookie-accept').onclick = function () {
+    localStorage.setItem(KEY, 'granted');
+    banner.style.display = 'none';
+    if (typeof pauseLoadAnalytics === 'function') pauseLoadAnalytics();
+  };
+  document.getElementById('pause-cookie-decline').onclick = function () {
+    localStorage.setItem(KEY, 'denied');
+    banner.style.display = 'none';
+  };
+})();
+</script>
+</body>
+</html>
